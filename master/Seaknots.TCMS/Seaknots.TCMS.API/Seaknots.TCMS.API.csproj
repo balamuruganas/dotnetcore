@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="TrackableEntities.Common.Core" Version="1.1.0" />
+    <PackageReference Include="TrackableEntities.EF.Core" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Seaknots.TCMS.Core\Seaknots.TCMS.Core.csproj" />
+    <ProjectReference Include="..\Seaknots.TCMS.DataAccess\Seaknots.TCMS.DataAccess.csproj" />
+    <ProjectReference Include="..\Seaknots.TCMS.Entities\Seaknots.TCMS.Entities.csproj" />
+    <ProjectReference Include="..\Seaknots.TCMS.Repository\Seaknots.TCMS.Repository.csproj" />
+    <ProjectReference Include="..\Seaknots.TCMS.Service\Seaknots.TCMS.Service.csproj" />
+  </ItemGroup>
+
+</Project>

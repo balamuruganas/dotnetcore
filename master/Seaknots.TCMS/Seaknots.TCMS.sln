@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.DataAccess", "Seaknots.TCMS.DataAccess\Seaknots.TCMS.DataAccess.csproj", "{B3D1E65F-628A-41C0-A438-A50CCEF9ED99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Core", "Seaknots.TCMS.Core\Seaknots.TCMS.Core.csproj", "{231BB65C-CDC1-4429-89C6-18F8845B352B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Repository", "Seaknots.TCMS.Repository\Seaknots.TCMS.Repository.csproj", "{446A18D3-BD3B-4CE3-8DC5-6CC128367F34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Service", "Seaknots.TCMS.Service\Seaknots.TCMS.Service.csproj", "{ADD134E5-0099-40B9-A542-9DB3CF9B5CE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.API", "Seaknots.TCMS.API\Seaknots.TCMS.API.csproj", "{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Entities", "Seaknots.TCMS.Entities\Seaknots.TCMS.Entities.csproj", "{3967B556-C352-4537-8826-E4EC602884A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3D1E65F-628A-41C0-A438-A50CCEF9ED99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3D1E65F-628A-41C0-A438-A50CCEF9ED99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3D1E65F-628A-41C0-A438-A50CCEF9ED99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3D1E65F-628A-41C0-A438-A50CCEF9ED99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{231BB65C-CDC1-4429-89C6-18F8845B352B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{231BB65C-CDC1-4429-89C6-18F8845B352B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{231BB65C-CDC1-4429-89C6-18F8845B352B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{231BB65C-CDC1-4429-89C6-18F8845B352B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{446A18D3-BD3B-4CE3-8DC5-6CC128367F34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{446A18D3-BD3B-4CE3-8DC5-6CC128367F34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{446A18D3-BD3B-4CE3-8DC5-6CC128367F34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{446A18D3-BD3B-4CE3-8DC5-6CC128367F34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD134E5-0099-40B9-A542-9DB3CF9B5CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD134E5-0099-40B9-A542-9DB3CF9B5CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD134E5-0099-40B9-A542-9DB3CF9B5CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD134E5-0099-40B9-A542-9DB3CF9B5CE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3967B556-C352-4537-8826-E4EC602884A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3967B556-C352-4537-8826-E4EC602884A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3967B556-C352-4537-8826-E4EC602884A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3967B556-C352-4537-8826-E4EC602884A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09F25AD3-384D-44E9-A9BF-228819F2F750}
+	EndGlobalSection
+EndGlobal
