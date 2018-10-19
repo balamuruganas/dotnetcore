@@ -1,9 +1,9 @@
-﻿namespace Seaknots.TCMS.Service
-{
-    using Seaknots.TCMS.Core.Abstractions.Service;
-    using Seaknots.TCMS.Entities;
+﻿using Seaknots.TCMS.Core.Abstractions.Service;
+using Seaknots.TCMS.Entities;
 
-    public interface IProductService : IService<Product>
-    {
-    }
+namespace Seaknots.TCMS.Service
+{
+  public interface IProductService : IService<Product>
+  {
+  }
 }

@@ -1,13 +1,13 @@
-﻿namespace Seaknots.TCMS.Service
-{
-    using Seaknots.TCMS.Core.Abstractions.Trackable;
-    using Seaknots.TCMS.Core.Concrete.Service;
-    using Seaknots.TCMS.Entities;
+﻿using Seaknots.TCMS.Core.Abstractions.Trackable;
+using Seaknots.TCMS.Core.Concrete.Service;
+using Seaknots.TCMS.Entities;
 
-    public class ProductService : Service<Product>, IProductService
+namespace Seaknots.TCMS.Service
+{
+  public class ProductService : Service<Product>, IProductService
+  {
+    public ProductService(ITrackableRepository<Product> repository) : base(repository)
     {
-        public ProductService(ITrackableRepository<Product> repository) : base(repository)
-        {
-        }
     }
+  }
 }

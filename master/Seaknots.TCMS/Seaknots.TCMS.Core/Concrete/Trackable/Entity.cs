@@ -5,15 +5,13 @@ using TrackableEntities.Common.Core;
 
 namespace Seaknots.TCMS.Core.Concrete.Trackable
 {
-    public abstract class Entity : ITrackable, IMergeable
-    {
-        [NotMapped]
-        public TrackingState TrackingState { get; set; }
-
-        [NotMapped]
-        public ICollection<string> ModifiedProperties { get; set; }
-
-        [NotMapped]
-        public Guid EntityIdentifier { get; set; }
-    }
+  public abstract class Entity : ITrackable, IMergeable
+  {
+    [NotMapped]
+    public TrackingState TrackingState { get; set; }
+    [NotMapped]
+    public ICollection<string> ModifiedProperties { get; set; }
+    [NotMapped]
+    public Guid EntityIdentifier { get; set; }
+  }
 }

@@ -8,24 +8,24 @@ using Seaknots.TCMS.Entities;
 
 namespace Seaknots.TCMS.API
 {
-    public class DbInitializer
+  public class DbInitializer
+  {
+    private readonly TCMSContext _ctx;
+
+    public DbInitializer(TCMSContext ctx)
     {
-        private readonly TCMSContext _ctx;
+      _ctx = ctx;
+    }
 
-        public DbInitializer(TCMSContext ctx)
-        {
-            _ctx = ctx;
-        }
+    public void Initialize()
+    {
+      // Run Migrations
+      if (!_ctx.Database.EnsureCreated())
+        _ctx.Database.Migrate();
 
-        public void Initialize()
-        {
-            // Run Migrations
-            if (!_ctx.Database.EnsureCreated())
-                _ctx.Database.Migrate();
-
-            if (!_ctx.Products.Any())
-            {
-                _ctx.Products.AddRange(new List<Product>()
+      if (!_ctx.Products.Any())
+      {
+        _ctx.Products.AddRange(new List<Product>()
                 {
                      new Product()
                      {
@@ -61,8 +61,8 @@ namespace Seaknots.TCMS.API
                     }
                 });
 
-                _ctx.SaveChanges();
-            }
-        }
+        _ctx.SaveChanges();
+      }
     }
+  }
 }
