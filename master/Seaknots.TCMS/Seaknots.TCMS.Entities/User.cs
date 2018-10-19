@@ -1,18 +1,23 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Trackable;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Seaknots.TCMS.Entities
 {
   public partial class User : Entity
   {
-    [Key]
+    public User()
+    {
+      Companies = new Collection<Company>();
+      Roles = new Collection<Role>();
+    }
+
     public int Id { get; set; }
-    [Required]
     public string Name { get; set; }
-    [Required]
     public string Password { get; set; }
     public string Email { get; set; }
-    public string Role { get; set; }
-    public string Company { get; set; }
+    public Role Role { get; set; }
+    public ICollection<Role> Roles { get; set; }
+    public ICollection<Company> Companies { get; set; }
   }
 }
