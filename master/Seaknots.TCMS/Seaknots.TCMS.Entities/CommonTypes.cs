@@ -35,32 +35,33 @@ namespace Seaknots.TCMS.Entities
     public ICollection<Country> Countries { get; set; }
   }
 
-  public class Region
+  public class RevenueGroup
   {
-    public Region()
+    public RevenueGroup()
     {
       Elements = new Collection<string>();
       ShipmentTypes = new Collection<string>();
-      RevenueGroups = new Collection<string>();
+      Groups = new Collection<string>();
     }
 
-    public string RevenueGroup { get; set; }
+    public string Group { get; set; }
     public ICollection<string> Elements { get; set; }
     public double TaxPercentage { get; set; }
     public ICollection<string> ShipmentTypes { get; set; }
-    public ICollection<string> RevenueGroups { get; set; }
+    public ICollection<string> Groups { get; set; }
   }
 
-  public class Expense
+
+  public class ExpenseGroup
   {
-    public Expense()
+    public ExpenseGroup()
     {
-      ExpenseGroups = new Collection<string>();
+      Groups = new Collection<string>();
       Elememts = new Collection<string>();
     }
 
-    public string ExpenseGroup { get; set; }
-    public ICollection<string> ExpenseGroups { get; set; }
+    public string Group { get; set; }
+    public ICollection<string> Groups { get; set; }
     public ICollection<string> Elememts { get; set; }
   }
 
@@ -77,6 +78,8 @@ namespace Seaknots.TCMS.Entities
 
   public class Currency : ListItem {}
 
+  public class Region : ListItem {}
+
   public class Port : ListItem {}
 
   public class Depot : ListItem {}
@@ -92,6 +95,8 @@ namespace Seaknots.TCMS.Entities
   public class Status : ListItem {}
 
   public class Company : ListItem {}
+
+  public class Code : ListItem {}
 
   public class Credit
   {

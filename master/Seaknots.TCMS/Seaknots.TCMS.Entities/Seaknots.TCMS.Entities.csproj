@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CorporateOffice.cs" />
+    <Compile Include="NewProduct.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="TankAgency.cs" />
     <Compile Include="TankOperator.cs" />
