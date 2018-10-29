@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExpenseGroup.cs" />
+    <Compile Include="RevenueGroup.cs" />
     <Compile Include="CorporateOffice.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Product.cs" />
+    <Compile Include="Tax.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="TankAgency.cs" />
     <Compile Include="TankOperator.cs" />
