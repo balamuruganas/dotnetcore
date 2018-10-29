@@ -25,6 +25,8 @@ namespace Seaknots.TCMS.DataAccess
     public DbSet<Location> Locations { get; set; }
     public DbSet<Code> ProductNames { get; set; }
     public DbSet<ProductGroup> ProductGroups { get; set; }
+    public DbSet<Tax> Taxes { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -104,13 +104,4 @@ namespace Seaknots.TCMS.Entities
     public string Name { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
   }
-
-  public class Tax
-  {
-    [Key]
-    public int ID { get; set; }
-    public string Code { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    public double Percentage { get; set; } = 0;
-  }
 }
