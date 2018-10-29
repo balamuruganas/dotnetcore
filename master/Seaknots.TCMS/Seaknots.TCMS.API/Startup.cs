@@ -37,7 +37,17 @@
       services.AddScoped<IUnitOfWork, UnitOfWork>();
 
       services.AddScoped<ITrackableRepository<Product>, TrackableRepository<Product>>();
+      services.AddScoped<ITrackableRepository<TankAgency>, TrackableRepository<TankAgency>>();
+      services.AddScoped<ITrackableRepository<TankOperator>, TrackableRepository<TankOperator>>();
+      services.AddScoped<ITrackableRepository<Customer>, TrackableRepository<Customer>>();
+      services.AddScoped<ITrackableRepository<Vendor>, TrackableRepository<Vendor>>();
+      services.AddScoped<ITrackableRepository<CorporateOffice>, TrackableRepository<CorporateOffice>>();
       services.AddScoped<IProductService, ProductService>();
+      services.AddScoped<ITankAgencyService, TankAgencyService>();
+      services.AddScoped<ITankOperatorService, TankOperatorService>();
+      services.AddScoped<ICustomerService, CustomerService>();
+      services.AddScoped<IVendorService, VendorService>();
+      services.AddScoped<ICorporateOfficeService, CorporateOfficeService>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                       .AddJsonOptions(opt =>

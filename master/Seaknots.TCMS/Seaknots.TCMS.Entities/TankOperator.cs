@@ -1,6 +1,8 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Trackable;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
@@ -18,6 +20,8 @@ namespace Seaknots.TCMS.Entities
       Types = new Collection<OperatorType>();
     }
 
+    [Key]
+    public int ID { get; set; }
     public string ShortName { get; set; }
     public string CompanyName { get; set; }
     public CompanyType CompanyType { get; set; }
@@ -30,14 +34,18 @@ namespace Seaknots.TCMS.Entities
     public OperatorType Type { get; set; }
     public Port Port { get; set; }
     public Depot Depot { get; set; }
+    [NotMapped]
     public ICollection<Country> Countries { get; set; }
+    [NotMapped]
     public ICollection<Location> Locations { get; set; }
+    [NotMapped]
     public ICollection<CompanyType> CompanyTypes { get; set; }
     public ICollection<Contact> Contacts { get; set; }
     public ICollection<BankInfo> BankInfos { get; set; }
     public ICollection<Port> PortsCovered { get; set; }
     public ICollection<Depot> DepotsCovered { get; set; }
+    [NotMapped]
     public ICollection<OperatorType> Types { get; set; }
-    public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
+    //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
   }
 }

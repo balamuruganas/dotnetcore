@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
@@ -16,6 +18,8 @@ namespace Seaknots.TCMS.Entities
       Operators = new Collection<TankOperator>();
     }
 
+    [Key]
+    public int ID { get; set; }
     public string ShortName { get; set; }
     public string CompanyName { get; set; }
     public CompanyType CompanyType { get; set; }
@@ -31,11 +35,16 @@ namespace Seaknots.TCMS.Entities
     public double ImportCommission { get; set; }
     public double MinimumCommission { get; set; }
     public BankInfo AcountDetail { get; set; }
+    [NotMapped]
     public ICollection<Country> Countries { get; set; }
+    [NotMapped]
     public ICollection<Location> Locations { get; set; }
+    [NotMapped]
     public ICollection<CompanyType> CompanyTypes { get; set; }
+    [NotMapped]
     public ICollection<Contact> Contacts { get; set; }
+    [NotMapped]
     public ICollection<TankOperator> Operators { get; set; }
-    public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
+    //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
   }
 }

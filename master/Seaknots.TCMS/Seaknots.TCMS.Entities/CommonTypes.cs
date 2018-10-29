@@ -1,78 +1,25 @@
-﻿using System;
+﻿using Seaknots.TCMS.Core.Concrete.Trackable;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
-  public class Contact
-  {
-    public Contact()
-    {
-      Departments = new Collection<string>();
-    }
-
-    public string Name { get; set; }
-    public string Designation { get; set; }
-    public string Department { get; set; }
-    public string Email { get; set; }
-    public int HP { get; set; }
-    public ICollection<string> Departments { get; set; }
-  }
-
-  public class Location
-  {
-    public Location()
-    {
-      Regions = new Collection<Region>();
-      Countries = new Collection<Country>();
-    }
-
-    public string Code { get; set; } = string.Empty;
-    public string Name { get; set; } = string.Empty;
-    public Region Region { get; set; }
-    public Country Country { get; set; }
-    public ICollection<Region> Regions { get; set; }
-    public ICollection<Country> Countries { get; set; }
-  }
-
-  public class RevenueGroup
-  {
-    public RevenueGroup()
-    {
-      Elements = new Collection<string>();
-      ShipmentTypes = new Collection<string>();
-      Groups = new Collection<string>();
-    }
-
-    public string Group { get; set; }
-    public ICollection<string> Elements { get; set; }
-    public double TaxPercentage { get; set; }
-    public ICollection<string> ShipmentTypes { get; set; }
-    public ICollection<string> Groups { get; set; }
-  }
-
-
-  public class ExpenseGroup
-  {
-    public ExpenseGroup()
-    {
-      Groups = new Collection<string>();
-      Elememts = new Collection<string>();
-    }
-
-    public string Group { get; set; }
-    public ICollection<string> Groups { get; set; }
-    public ICollection<string> Elememts { get; set; }
-  }
-
   public abstract class ListItem
   {
-    public int ID { get; set; } = 0;
-    public string Text { get; } = string.Empty;
-    public string Value { get; } = string.Empty;
+    [Key]
+    public int ID { get; set; }
+    public string Text { get; set; } = string.Empty;
+    public string Value { get; set; } = string.Empty;
   }
 
-  public class BankInfo {}
+  public class BankInfo
+  {
+    [Key]
+    public int ID { get; set; }
+  }
 
   public class Country : ListItem {}
 
@@ -98,8 +45,14 @@ namespace Seaknots.TCMS.Entities
 
   public class Code : ListItem {}
 
+  public class ProductGroup : ListItem {}
+
+  public class CleaningMethod : ListItem {}
+
   public class Credit
   {
+    [Key]
+    public int ID { get; set; }
     public int Days { get; set; } = 0;
     public double Amount { get; set; } = 0;
   }
@@ -112,36 +65,50 @@ namespace Seaknots.TCMS.Entities
       CustomerNames = new Collection<string>();
     }
 
+    [Key]
+    public int ID { get; set; }
     public string CustomerCode { get; set; }
     public string CustomerName { get; set; }
+    [NotMapped]
     public ICollection<string> CustomerCodes { get; set; }
+    [NotMapped]
     public ICollection<string> CustomerNames { get; set; }
   }
 
   public class Credentials
   {
+    [Key]
+    public int ID { get; set; }
     public string UserName { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
   }
 
   public class Followup
   {
+    [Key]
+    public int ID { get; set; }
     public string Comment { get; set; } = string.Empty;
     public DateTime AlertDate { get; set; }
   }
 
   public class Role
   {
+    [Key]
+    public int ID { get; set; }
   }
 
   public class Logo
   {
+    [Key]
+    public int ID { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
   }
 
   public class Tax
   {
+    [Key]
+    public int ID { get; set; }
     public string Code { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public double Percentage { get; set; } = 0;

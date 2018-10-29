@@ -23,46 +23,49 @@ namespace Seaknots.TCMS.API
       if (!_ctx.Database.EnsureCreated())
         _ctx.Database.Migrate();
 
-      if (!_ctx.Products.Any())
-      {
-        _ctx.Products.AddRange(new List<Product>()
-                {
-                     new Product()
-                     {
-                         Id = 0,
-                         Name = "P1",
-                         Price = (decimal)1.5,
-                         Category = "Cat1"
-                     }, new Product()
-                    {
-                        Id = 0,
-                        Name = "P1",
-                        Price = (decimal)1.5,
-                        Category = "Cat1"
-                    },
-                    new Product()
-                    {
-                        Id = 0,
-                        Name = "P1",
-                        Price = (decimal)1.5,
-                        Category = "Cat1"
-                    }, new Product()
-                    {
-                        Id = 0,
-                        Name = "P1",
-                        Price = (decimal)1.5,
-                        Category = "Cat1"
-                    }, new Product()
-                    {
-                        Id = 0,
-                        Name = "P1",
-                        Price = (decimal)1.5,
-                        Category = "Cat1"
-                    }
-                });
+      if (!_ctx.Countries.Any())
+        AddCountries();
 
-        _ctx.SaveChanges();
-      }
+      if (!_ctx.ProductGroups.Any())
+        AddProductGroups();
+
+      if (!_ctx.ProductNames.Any())
+        AddProductNames();
+    }
+
+    private void AddCountries()
+    {
+      _ctx.Countries.AddRange(new List<Country>()
+        {
+          new Country() { Text="IN", Value="India" },
+          new Country() { Text="US", Value="United States" },
+          new Country() { Text="UK", Value="United Kingdom" },
+          new Country() { Text="FR", Value="France" },
+          new Country() { Text="ES", Value="Spain" }
+        });
+      _ctx.SaveChanges();
+    }
+
+    private void AddProductGroups()
+    {
+      _ctx.ProductGroups.AddRange(new List<ProductGroup>()
+        {
+          new ProductGroup() { Text="PG1", Value="Product Group One" },
+          new ProductGroup() { Text="PG2", Value="Product Group Two" },
+          new ProductGroup() { Text="PG3", Value="Product Group Three" }
+        });
+      _ctx.SaveChanges();
+    }
+
+    private void AddProductNames()
+    {
+      _ctx.ProductNames.AddRange(new List<Code>()
+        {
+          new Code() { Text="PN1", Value="Product Name One" },
+          new Code() { Text="PN2", Value="Product Name Two" },
+          new Code() { Text="PN3", Value="Product Name Three" }
+        });
+      _ctx.SaveChanges();
     }
   }
 }

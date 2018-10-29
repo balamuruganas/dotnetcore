@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace Seaknots.TCMS.Service
 {
-  public interface IProductService : IService<Product>
+  public interface ICorporateOfficeService : IService<CorporateOffice>
   {
-    IQueryable<Product> Products { get; }
+    IQueryable<CorporateOffice> CorporateOffices { get; }
   }
 }

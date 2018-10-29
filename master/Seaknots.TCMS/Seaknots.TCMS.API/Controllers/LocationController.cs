@@ -9,21 +9,21 @@
   using System.Net;
   using System.Threading.Tasks;
 
-  [Route("api/products")]
-  public class ProductsController : ControllerBase
+  [Route("api/locations")]
+  public class LocationController : ControllerBase
   {
-    private readonly IProductService _productService;
+    private readonly ILocationService _locationService;
 
     private readonly IUnitOfWork _unitOfWork;
 
-    public ProductsController(IProductService productService, IUnitOfWork unitOfWork)
+    public LocationController(ILocationService locationService, IUnitOfWork unitOfWork)
     {
-      _productService = productService;
+      _locationService = locationService;
       _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
-    public IQueryable<Product> Get() => _productService.Products;
+    public IQueryable<Location> Get() => _locationService.Locations;
 
     [HttpGet]
     [Route("{id:int}")]
@@ -32,25 +32,25 @@
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var product = await _productService.FindAsync(id);
+      var location = await _locationService.FindAsync(id);
 
-      if (product == null)
+      if (location == null)
         return NotFound();
 
-      return Ok(product);
+      return Ok(location);
     }
 
     [HttpPut]
     [Route("{id:int}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Product product)
+    public async Task<IActionResult> Put(int id, [FromBody] Location location)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != product.ID)
+      if (id != location.ID)
         return BadRequest();
 
-      _productService.Update(product);
+      _locationService.Update(location);
 
       try
       {
@@ -58,7 +58,7 @@
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!await _productService.ExistsAsync(id))
+        if (!await _locationService.ExistsAsync(id))
           return NotFound();
         throw;
       }
@@ -67,15 +67,15 @@
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Product product)
+    public async Task<IActionResult> Post([FromBody] Location location)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _productService.Insert(product);
+      _locationService.Insert(location);
       await _unitOfWork.SaveChangesAsync();
 
-      return Ok(product);
+      return Ok(location);
     }
 
     [HttpDelete]
@@ -85,7 +85,7 @@
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _productService.DeleteAsync(id);
+      var result = await _locationService.DeleteAsync(id);
 
       if (!result)
         return NotFound();

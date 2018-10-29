@@ -9,21 +9,21 @@
   using System.Net;
   using System.Threading.Tasks;
 
-  [Route("api/products")]
-  public class ProductsController : ControllerBase
+  [Route("api/corporateoffices")]
+  public class CorporateOfficeController : ControllerBase
   {
-    private readonly IProductService _productService;
+    private readonly ICorporateOfficeService _coService;
 
     private readonly IUnitOfWork _unitOfWork;
 
-    public ProductsController(IProductService productService, IUnitOfWork unitOfWork)
+    public CorporateOfficeController(ICorporateOfficeService coService, IUnitOfWork unitOfWork)
     {
-      _productService = productService;
+      _coService = coService;
       _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
-    public IQueryable<Product> Get() => _productService.Products;
+    public IQueryable<CorporateOffice> Get() => _coService.CorporateOffices;
 
     [HttpGet]
     [Route("{id:int}")]
@@ -32,25 +32,25 @@
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var product = await _productService.FindAsync(id);
+      var cos = await _coService.FindAsync(id);
 
-      if (product == null)
+      if (cos == null)
         return NotFound();
 
-      return Ok(product);
+      return Ok(cos);
     }
 
     [HttpPut]
     [Route("{id:int}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Product product)
+    public async Task<IActionResult> Put(int id, [FromBody] CorporateOffice co)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != product.ID)
+      if (id != co.ID)
         return BadRequest();
 
-      _productService.Update(product);
+      _coService.Update(co);
 
       try
       {
@@ -58,7 +58,7 @@
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!await _productService.ExistsAsync(id))
+        if (!await _coService.ExistsAsync(id))
           return NotFound();
         throw;
       }
@@ -67,15 +67,15 @@
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Product product)
+    public async Task<IActionResult> Post([FromBody] CorporateOffice co)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _productService.Insert(product);
+      _coService.Insert(co);
       await _unitOfWork.SaveChangesAsync();
 
-      return Ok(product);
+      return Ok(co);
     }
 
     [HttpDelete]
@@ -85,7 +85,7 @@
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _productService.DeleteAsync(id);
+      var result = await _coService.DeleteAsync(id);
 
       if (!result)
         return NotFound();
