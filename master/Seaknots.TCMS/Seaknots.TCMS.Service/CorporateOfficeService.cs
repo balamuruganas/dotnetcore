@@ -10,6 +10,13 @@ namespace Seaknots.TCMS.Service
     public CorporateOfficeService(MasterRepository<CorporateOffice> repository) : base(repository)
     {
       _corporateOfficeRepository = repository;
+      foreach(var co in CorporateOffices)
+      {
+        co.CompanyTypes = _corporateOfficeRepository.TCMSDb.CompanyTypes.ToList();
+        co.Countries = _corporateOfficeRepository.TCMSDb.Countries.ToList();
+        co.Currencies = _corporateOfficeRepository.TCMSDb.Currencies.ToList();
+        co.Locations = _corporateOfficeRepository.TCMSDb.Locations.Where(x => x.Country.Text == co.Country.Text).ToList();
+      }
     }
 
     public IQueryable<CorporateOffice> CorporateOffices => _corporateOfficeRepository.TCMSDb.CorporateOffices;

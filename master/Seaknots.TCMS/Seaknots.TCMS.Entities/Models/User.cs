@@ -6,19 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
-  public class Contact : Entity
+  public partial class User : Entity
   {
-    public Contact()
-    {
-      Departments = new Collection<string>();
-    }
-
     public string Name { get; set; }
-    public string Designation { get; set; }
-    public string Department { get; set; }
+    public string Password { get; set; }
     public string Email { get; set; }
-    public int HP { get; set; }
-    [NotMapped]
-    public ICollection<string> Departments { get; set; }
+    public int RoleID { get; set; }
+    public int CompanyID { get; set; }
   }
 }

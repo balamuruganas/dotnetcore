@@ -8,7 +8,7 @@ namespace Seaknots.TCMS.Core.Concrete.Trackable
 {
   public abstract class Entity : ITrackable, IMergeable
   {
-    [Key]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int ID { get; set; }
     [NotMapped]
     public TrackingState TrackingState { get; set; }

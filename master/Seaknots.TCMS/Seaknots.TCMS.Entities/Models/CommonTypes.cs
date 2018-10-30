@@ -7,11 +7,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
-  public abstract class ListItem
+  public abstract class ListItem :Entity
   {
-    [Key]
-    public int ID { get; set; }
-    public string Text { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
     public string Value { get; set; } = string.Empty;
   }
 
@@ -20,12 +18,6 @@ namespace Seaknots.TCMS.Entities
     [Key]
     public int ID { get; set; }
   }
-
-  public class Country : ListItem {}
-
-  public class Currency : ListItem {}
-
-  public class Region : ListItem {}
 
   public class Port : ListItem {}
 
@@ -45,8 +37,6 @@ namespace Seaknots.TCMS.Entities
 
   public class Code : ListItem {}
 
-  public class ProductGroup : ListItem {}
-
   public class CleaningMethod : ListItem {}
 
   public class Credit
@@ -57,36 +47,20 @@ namespace Seaknots.TCMS.Entities
     public double Amount { get; set; } = 0;
   }
 
-  public class Affliates
+  public class Affliates : Entity
   {
-    public Affliates()
-    {
-      CustomerCodes = new Collection<string>();
-      CustomerNames = new Collection<string>();
-    }
-
-    [Key]
-    public int ID { get; set; }
-    public string CustomerCode { get; set; }
-    public string CustomerName { get; set; }
-    [NotMapped]
-    public ICollection<string> CustomerCodes { get; set; }
-    [NotMapped]
-    public ICollection<string> CustomerNames { get; set; }
+    public int CustomerCodeID { get; set; }
+    public int CustomerNameID { get; set; }
   }
 
-  public class Credentials
+  public class Credentials : Entity
   {
-    [Key]
-    public int ID { get; set; }
     public string UserName { get; set; } = string.Empty;
     public string Password { get; set; } = string.Empty;
   }
 
-  public class Followup
+  public class Followup : Entity
   {
-    [Key]
-    public int ID { get; set; }
     public string Comment { get; set; } = string.Empty;
     public DateTime AlertDate { get; set; }
   }
@@ -97,10 +71,8 @@ namespace Seaknots.TCMS.Entities
     public int ID { get; set; }
   }
 
-  public class Logo
+  public class Logo : Entity
   {
-    [Key]
-    public int ID { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
   }

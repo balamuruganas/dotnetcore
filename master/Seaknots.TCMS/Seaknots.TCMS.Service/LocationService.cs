@@ -10,6 +10,11 @@ namespace Seaknots.TCMS.Service
     public LocationService(MasterRepository<Location> repository) : base(repository)
     {
       _locationRepository = repository;
+      foreach(var loc in Locations)
+      {
+        loc.Countries = _locationRepository.TCMSDb.Countries.ToList();
+        loc.Regions = _locationRepository.TCMSDb.Regions.Where(x => x.Text == loc.Country.Text).ToList();
+      }
     }
 
     public IQueryable<Location> Locations => _locationRepository.TCMSDb.Locations;
