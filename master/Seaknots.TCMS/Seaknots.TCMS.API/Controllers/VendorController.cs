@@ -14,7 +14,6 @@ namespace Seaknots.TCMS.API.Controllers
   public class VendorController : ControllerBase
   {
     private readonly IVendorService _vendorService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public VendorController(IVendorService vendorService, IUnitOfWork unitOfWork)

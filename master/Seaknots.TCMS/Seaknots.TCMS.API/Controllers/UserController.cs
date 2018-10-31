@@ -21,6 +21,7 @@ namespace Seaknots.TCMS.API.Controllers
       _unitOfWork = unitOfWork;
     }
 
+    [HttpGet]
     public IQueryable<User> Get() => _userService.GetModel().Items.AsQueryable();
 
     [HttpGet]

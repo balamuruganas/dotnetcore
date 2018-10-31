@@ -10,9 +10,7 @@ namespace Seaknots.TCMS.Core.Concrete.Trackable
 {
   public class TrackableRepository<TEntity> : Repository<TEntity>, ITrackableRepository<TEntity> where TEntity : class, ITrackable
   {
-    public TrackableRepository(DbContext context) : base(context)
-    {
-    }
+    public TrackableRepository(DbContext context) : base(context) {}
 
     public override void Insert(TEntity item)
     {

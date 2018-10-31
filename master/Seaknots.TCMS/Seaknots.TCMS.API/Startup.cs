@@ -14,6 +14,7 @@
   using Seaknots.TCMS.Core.Concrete.Trackable;
   using Seaknots.TCMS.DataAccess;
   using Seaknots.TCMS.Entities;
+  using Seaknots.TCMS.Repository;
   using Seaknots.TCMS.Service;
   using Swashbuckle.AspNetCore.Swagger;
   using Contact = Swashbuckle.AspNetCore.Swagger.Contact;
@@ -36,18 +37,35 @@
       services.AddScoped<DbContext, TCMSContext>();
       services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+      services.AddScoped<ITrackableRepository<CorporateOffice>, TrackableRepository<CorporateOffice>>();
+      services.AddScoped<ITrackableRepository<Customer>, TrackableRepository<Customer>>();
+      services.AddScoped<ITrackableRepository<Location>, TrackableRepository<Location>>();
       services.AddScoped<ITrackableRepository<Product>, TrackableRepository<Product>>();
       services.AddScoped<ITrackableRepository<TankAgency>, TrackableRepository<TankAgency>>();
       services.AddScoped<ITrackableRepository<TankOperator>, TrackableRepository<TankOperator>>();
-      services.AddScoped<ITrackableRepository<Customer>, TrackableRepository<Customer>>();
+      services.AddScoped<ITrackableRepository<Tax>, TrackableRepository<Tax>>();
+      services.AddScoped<ITrackableRepository<User>, TrackableRepository<User>>();
       services.AddScoped<ITrackableRepository<Vendor>, TrackableRepository<Vendor>>();
-      services.AddScoped<ITrackableRepository<CorporateOffice>, TrackableRepository<CorporateOffice>>();
+
+      services.AddScoped<IMasterRepository<CorporateOffice>, MasterRepository<CorporateOffice>>();
+      services.AddScoped<IMasterRepository<Customer>, MasterRepository<Customer>>();
+      services.AddScoped<IMasterRepository<Location>, MasterRepository<Location>>();
+      services.AddScoped<IMasterRepository<Product>, MasterRepository<Product>>();
+      services.AddScoped<IMasterRepository<TankAgency>, MasterRepository<TankAgency>>();
+      services.AddScoped<IMasterRepository<TankOperator>, MasterRepository<TankOperator>>();
+      services.AddScoped<IMasterRepository<Tax>, MasterRepository<Tax>>();
+      services.AddScoped<IMasterRepository<User>, MasterRepository<User>>();
+      services.AddScoped<IMasterRepository<Vendor>, MasterRepository<Vendor>>();
+
+      services.AddScoped<ICorporateOfficeService, CorporateOfficeService>();
+      services.AddScoped<ICustomerService, CustomerService>();
+      services.AddScoped<ILocationService, LocationService>();
       services.AddScoped<IProductService, ProductService>();
       services.AddScoped<ITankAgencyService, TankAgencyService>();
       services.AddScoped<ITankOperatorService, TankOperatorService>();
-      services.AddScoped<ICustomerService, CustomerService>();
+      services.AddScoped<ITaxService, TaxService>();
+      services.AddScoped<IUserService, UserService>();
       services.AddScoped<IVendorService, VendorService>();
-      services.AddScoped<ICorporateOfficeService, CorporateOfficeService>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                       .AddJsonOptions(opt =>
