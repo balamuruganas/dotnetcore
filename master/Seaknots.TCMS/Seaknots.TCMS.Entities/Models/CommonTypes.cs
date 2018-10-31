@@ -49,8 +49,8 @@ namespace Seaknots.TCMS.Entities
 
   public class Affliates : Entity
   {
-    public int CustomerCodeID { get; set; }
-    public int CustomerNameID { get; set; }
+    public int CustomerCodeID { get; set; } = 0;
+    public int CustomerNameID { get; set; } = 0;
   }
 
   public class Credentials : Entity
@@ -63,12 +63,6 @@ namespace Seaknots.TCMS.Entities
   {
     public string Comment { get; set; } = string.Empty;
     public DateTime AlertDate { get; set; }
-  }
-
-  public class Role
-  {
-    [Key]
-    public int ID { get; set; }
   }
 
   public class Logo : Entity

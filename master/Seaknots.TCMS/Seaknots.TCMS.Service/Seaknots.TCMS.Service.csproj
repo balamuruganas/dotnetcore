@@ -141,24 +141,24 @@
   <ItemGroup>
     <Compile Include="EntityService.cs" />
     <Compile Include="IEntityService.cs" />
-    <Compile Include="ICorporateOfficeService.cs" />
-    <Compile Include="ILocationService.cs" />
-    <Compile Include="IUserService.cs" />
-    <Compile Include="ITaxService.cs" />
-    <Compile Include="IVendorService.cs" />
-    <Compile Include="ICustomerService.cs" />
-    <Compile Include="ITankOperatorService.cs" />
-    <Compile Include="ITankAgencyService.cs" />
-    <Compile Include="IProductService.cs" />
-    <Compile Include="CorporateOfficeService.cs" />
-    <Compile Include="LocationService.cs" />
-    <Compile Include="UserService.cs" />
-    <Compile Include="TaxService.cs" />
-    <Compile Include="VendorService.cs" />
-    <Compile Include="CustomerService.cs" />
-    <Compile Include="TankOperatorService.cs" />
-    <Compile Include="TankAgencyService.cs" />
-    <Compile Include="ProductService.cs" />
+    <Compile Include="Interfaces\ICorporateOfficeService.cs" />
+    <Compile Include="Interfaces\ILocationService.cs" />
+    <Compile Include="Interfaces\IUserService.cs" />
+    <Compile Include="Interfaces\ITaxService.cs" />
+    <Compile Include="Interfaces\IVendorService.cs" />
+    <Compile Include="Interfaces\ICustomerService.cs" />
+    <Compile Include="Interfaces\ITankOperatorService.cs" />
+    <Compile Include="Interfaces\ITankAgencyService.cs" />
+    <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="Services\CorporateOfficeService.cs" />
+    <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Services\TaxService.cs" />
+    <Compile Include="Services\VendorService.cs" />
+    <Compile Include="Services\CustomerService.cs" />
+    <Compile Include="Services\TankOperatorService.cs" />
+    <Compile Include="Services\TankAgencyService.cs" />
+    <Compile Include="Services\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

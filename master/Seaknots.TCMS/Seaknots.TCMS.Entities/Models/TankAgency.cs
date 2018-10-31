@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
-  public class OperatorProp
+  public class OperatorProp : Entity
   {
-    public int OperatorID { get; set; }
-    public DateTime ValidFrom { get; set; }
-    public DateTime ValidTill { get; set; }
-    public double ExportCom { get; set; }
-    public double ImportCom { get; set; }
-    public double MinCom { get; set; }
+    public int OperatorID { get; set; } = -1;
+    public DateTime ValidFrom { get; set; } = DateTime.Now;
+    public DateTime ValidTill { get; set; } = DateTime.Now;
+    public double ExportCom { get; set; } = 0;
+    public double ImportCom { get; set; } = 0;
+    public double MinCom { get; set; } = 0;
   }
 
   public partial class TankAgency : Entity
@@ -25,16 +25,16 @@ namespace Seaknots.TCMS.Entities
       Contacts = new Collection<Contact>();
     }
 
-    public string ShortName { get; set; }
-    public string CompanyName { get; set; }
-    public int CompanyTypeID { get; set; }
-    public int CurrencyID { get; set; }
-    public int CountryID { get; set; }
-    public int LocationID { get; set; }
-    public string Address { get; set; }
-    public string Email { get; set; }
-    public string Website { get; set; }
-    public BankInfo AcountDetail { get; set; }
+    public string ShortName { get; set; } = string.Empty;
+    public string CompanyName { get; set; } = string.Empty;
+    public int CompanyTypeID { get; set; } = -1;
+    public int CurrencyID { get; set; } = -1;
+    public int CountryID { get; set; } = -1;
+    public int LocationID { get; set; } = -1;
+    public string Address { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Website { get; set; } = string.Empty;
+    public BankInfo AcountDetail { get; set; } = new BankInfo();
     public ICollection<Contact> Contacts { get; set; }
     public ICollection<OperatorProp> Operators { get; set; }
     //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }

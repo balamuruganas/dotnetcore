@@ -67,6 +67,10 @@
     <Compile Include="ViewModels\LocationView.cs" />
     <Compile Include="ViewModels\ProductView.cs" />
     <Compile Include="ViewModels\TankAgencyView.cs" />
+    <Compile Include="ViewModels\TankOperatorView.cs" />
+    <Compile Include="ViewModels\TaxView.cs" />
+    <Compile Include="ViewModels\UserView.cs" />
+    <Compile Include="ViewModels\VendorView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Seaknots.TCMS.Core\Seaknots.TCMS.Core.csproj">

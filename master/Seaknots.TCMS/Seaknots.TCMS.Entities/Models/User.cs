@@ -8,10 +8,15 @@ namespace Seaknots.TCMS.Entities
 {
   public partial class User : Entity
   {
+    public string Name { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public int RoleID { get; set; } = -1;
+    public int CompanyID { get; set; } = -1;
+  }
+
+  public class Role : Entity
+  {
     public string Name { get; set; }
-    public string Password { get; set; }
-    public string Email { get; set; }
-    public int RoleID { get; set; }
-    public int CompanyID { get; set; }
   }
 }

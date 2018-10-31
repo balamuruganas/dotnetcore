@@ -35,6 +35,8 @@ namespace Seaknots.TCMS.DataAccess
     public DbSet<Role> Roles { get; set; }
     public DbSet<Company> Companies { get; set; }
     public DbSet<CompanyType> CompanyTypes { get; set; }
+    public DbSet<Port> Ports { get; set; }
+    public DbSet<Depot> Depots { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

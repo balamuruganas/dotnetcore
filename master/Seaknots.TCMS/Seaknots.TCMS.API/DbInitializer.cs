@@ -46,17 +46,20 @@ namespace Seaknots.TCMS.API
 
       if (!_ctx.CorporateOffices.Any())
         AddCorporateOffices();
+
+      if (!_ctx.Roles.Any())
+        AddRoles();
     }
 
     private void AddCountries()
     {
       _ctx.Countries.AddRange(new List<Country>()
         {
-          new Country() { Text="IN", Value="India" },
-          new Country() { Text="US", Value="United States" },
-          new Country() { Text="UK", Value="United Kingdom" },
-          new Country() { Text="FR", Value="France" },
-          new Country() { Text="ES", Value="Spain" }
+          new Country() { Name="IN", Value="India" },
+          new Country() { Name="US", Value="United States" },
+          new Country() { Name="UK", Value="United Kingdom" },
+          new Country() { Name="FR", Value="France" },
+          new Country() { Name="ES", Value="Spain" }
         });
       _ctx.SaveChanges();
     }
@@ -65,9 +68,9 @@ namespace Seaknots.TCMS.API
     {
       _ctx.ProductGroups.AddRange(new List<ProductGroup>()
         {
-          new ProductGroup() { Text="PG1", Value="Product Group One" },
-          new ProductGroup() { Text="PG2", Value="Product Group Two" },
-          new ProductGroup() { Text="PG3", Value="Product Group Three" }
+          new ProductGroup() { Name="PG1", Value="Product Group One" },
+          new ProductGroup() { Name="PG2", Value="Product Group Two" },
+          new ProductGroup() { Name="PG3", Value="Product Group Three" }
         });
       _ctx.SaveChanges();
     }
@@ -76,9 +79,9 @@ namespace Seaknots.TCMS.API
     {
       _ctx.ProductNames.AddRange(new List<Code>()
         {
-          new Code() { Text="PN1", Value="Product Name One" },
-          new Code() { Text="PN2", Value="Product Name Two" },
-          new Code() { Text="PN3", Value="Product Name Three" }
+          new Code() { Name="PN1", Value="Product Name One" },
+          new Code() { Name="PN2", Value="Product Name Two" },
+          new Code() { Name="PN3", Value="Product Name Three" }
         });
       _ctx.SaveChanges();
     }
@@ -87,10 +90,10 @@ namespace Seaknots.TCMS.API
     {
       _ctx.Currencies.AddRange(new List<Currency>()
       {
-        new Currency() { Text="USD", Value="US Dollar" },
-        new Currency() { Text="INR", Value="Indian Rupees" },
-        new Currency() { Text="Euro", Value="Europian Euro" },
-        new Currency() { Text="GBP", Value="British Pound" }
+        new Currency() { Name="USD", Value="US Dollar" },
+        new Currency() { Name="INR", Value="Indian Rupees" },
+        new Currency() { Name="Euro", Value="Europian Euro" },
+        new Currency() { Name="GBP", Value="British Pound" }
       });
       _ctx.SaveChanges();
     }
@@ -99,9 +102,9 @@ namespace Seaknots.TCMS.API
     {
       _ctx.CompanyTypes.AddRange(new List<CompanyType>()
       {
-        new CompanyType() { Text="CT1", Value="Company Type One" },
-        new CompanyType() { Text="CT2", Value="Company Type Two" },
-        new CompanyType() { Text="CT3", Value="Company Type Three" }
+        new CompanyType() { Name="CT1", Value="Company Type One" },
+        new CompanyType() { Name="CT2", Value="Company Type Two" },
+        new CompanyType() { Name="CT3", Value="Company Type Three" }
       });
       _ctx.SaveChanges();
     }
@@ -110,9 +113,9 @@ namespace Seaknots.TCMS.API
     {
       _ctx.Locations.AddRange(new List<Location>()
       {
-        new Location() { Code="Loc1", Name="Location One", Country = _ctx.Countries.ToList()[0], Region=_ctx.Regions.FirstOrDefault(x => x.Value=="Chennai") },
-        new Location() { Code="Loc2", Name="Location Two", Country = _ctx.Countries.ToList()[0], Region=_ctx.Regions.FirstOrDefault(x => x.Value=="Delhi") },
-        new Location() { Code="Loc3", Name="Location Three", Country = _ctx.Countries.ToList()[1], Region=_ctx.Regions.FirstOrDefault(x => x.Value=="Newyork") }
+        new Location() { Code="Loc1", Name="Location One", CountryID = 0, RegionID=0 },
+        new Location() { Code="Loc2", Name="Location Two", CountryID = 0, RegionID=1 },
+        new Location() { Code="Loc3", Name="Location Three", CountryID = 0, RegionID=2 }
       });
       _ctx.SaveChanges();
     }
@@ -121,10 +124,10 @@ namespace Seaknots.TCMS.API
     {
       _ctx.Regions.AddRange(new List<Region>()
       {
-        new Region() { Text="IN", Value="Chennai" },
-        new Region() { Text="IN", Value="Delhi" },
-        new Region() { Text="US", Value="Newyork" },
-        new Region() { Text="US", Value="Washigton DC" }
+        new Region() { Name="IN", Value="Chennai" },
+        new Region() { Name="IN", Value="Delhi" },
+        new Region() { Name="US", Value="Newyork" },
+        new Region() { Name="US", Value="Washigton DC" }
       });
       _ctx.SaveChanges();
     }
@@ -133,9 +136,19 @@ namespace Seaknots.TCMS.API
     {
       _ctx.CorporateOffices.AddRange(new List<CorporateOffice>()
       {
-        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyType=_ctx.CompanyTypes.ToList()[0], Currency=_ctx.Currencies.ToList()[0], Country=_ctx.Countries.ToList()[0], Location=_ctx.Locations.ToList()[0], Email="co1@tcms.com", Address="1 Avenue, Chennai" },
-        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyType=_ctx.CompanyTypes.ToList()[1], Currency=_ctx.Currencies.ToList()[0], Country=_ctx.Countries.ToList()[0], Location =_ctx.Locations.ToList()[1], Email ="co2@tcms.com", Address="2 Avenue, Delhi" },
-        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyType=_ctx.CompanyTypes.ToList()[2], Currency=_ctx.Currencies.ToList()[1], Country =_ctx.Countries.ToList()[1], Location =_ctx.Locations.ToList()[2], Email ="co3@tcms.com", Address="3 Avenue, Newyork" }
+        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai" },
+        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi" },
+        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork" }
+      });
+      _ctx.SaveChanges();
+    }
+
+    private void AddRoles()
+    {
+      _ctx.Roles.AddRange(new List<Role>()
+      {
+        new Role() { Name = "Admin" },
+        new Role() { Name = "User" }
       });
       _ctx.SaveChanges();
     }

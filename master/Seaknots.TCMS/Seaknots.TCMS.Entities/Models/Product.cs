@@ -14,19 +14,19 @@ namespace Seaknots.TCMS.Entities
       CleaningMethods = new Collection<CleaningMethod>();
     }
 
-    public int GroupID { get; set; }
-    public int CodeID { get; set; }
-    public string ShippingName { get; set; }
-    public string TechnicalName { get; set; }
-    public string IMOClass { get; set; }
-    public string UNCode { get; set; }
-    public string PackingGroup { get; set; }
-    public string SubClass { get; set; }
-    public bool MarinePollutant { get; set; }
-    public bool Restricted { get; set; }
-    public int StatusID { get; set; }
-    public string StepOne { get; set; }
-    public string StepTwo { get; set; }
+    public int GroupID { get; set; } = -1;
+    public int CodeID { get; set; } = -1;
+    public string ShippingName { get; set; } = string.Empty;
+    public string TechnicalName { get; set; } = string.Empty;
+    public string IMOClass { get; set; } = string.Empty;
+    public string UNCode { get; set; } = string.Empty;
+    public string PackingGroup { get; set; } = string.Empty;
+    public string SubClass { get; set; } = string.Empty;
+    public bool MarinePollutant { get; set; } = false;
+    public bool Restricted { get; set; } = false;
+    public int StatusID { get; set; } = -1;
+    public string StepOne { get; set; } = string.Empty;
+    public string StepTwo { get; set; } = string.Empty;
     public ICollection<Port> RestrictedPorts { get; set; }
     public ICollection<CleaningMethod> CleaningMethods { get; set; }
   }

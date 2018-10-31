@@ -1,6 +1,8 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Service;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
+using System;
 using System.Linq;
 
 namespace Seaknots.TCMS.Service
@@ -12,24 +14,25 @@ namespace Seaknots.TCMS.Service
       _tankOperatorRepository = repository;
     }
 
-    public IQueryable<TankOperator> TankOperators => _tankOperatorRepository.TCMSDb.TankOperators;
-
-    public override void Insert(TankOperator to)
+    public TankOperatorView GetModel()
     {
-      if(!TankOperators.Contains(to))
-        _tankOperatorRepository.Insert(to);
-    }
-
-    public override void Update(TankOperator to)
-    {
-      if (TankOperators.Contains(to))
-        _tankOperatorRepository.Update(to);
-    }
-
-    public override void Delete(TankOperator to)
-    {
-      if (TankOperators.Contains(to))
-        _tankOperatorRepository.Update(to);
+      var model = new TankOperatorView();
+      try
+      {
+        model.Title = "Tank Operator View";
+        model.Items = _tankOperatorRepository.TCMSDb.TankOperators;
+        model.OperatorTypes = _tankOperatorRepository.TCMSDb.TanksOperatorTypes.ToList();
+        model.CompanyTypes = _tankOperatorRepository.TCMSDb.CompanyTypes.ToList();
+        model.Countries = _tankOperatorRepository.TCMSDb.Countries.ToList();
+        model.Currencies = _tankOperatorRepository.TCMSDb.Currencies.ToList();
+        model.Depots = _tankOperatorRepository.TCMSDb.Depots.ToList();
+        model.Locations = _tankOperatorRepository.TCMSDb.Locations.ToList();
+        return model;
+      }
+      catch(Exception ex)
+      {
+        return model;
+      }
     }
 
     private MasterRepository<TankOperator> _tankOperatorRepository;

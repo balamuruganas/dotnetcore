@@ -6,8 +6,8 @@ namespace Seaknots.TCMS.Entities
   {
     public string Code { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
-    public int RegionID { get; set; }
-    public int CountryID { get; set; }
+    public int RegionID { get; set; } = -1;
+    public int CountryID { get; set; } = -1;
   }
 
   public class Region : ListItem { }
