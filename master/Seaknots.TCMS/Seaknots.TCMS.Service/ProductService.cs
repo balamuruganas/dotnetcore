@@ -1,6 +1,8 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Service;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
+using System;
 using System.Linq;
 
 namespace Seaknots.TCMS.Service
@@ -12,24 +14,22 @@ namespace Seaknots.TCMS.Service
       _productRepository = repository;
     }
 
-    public IQueryable<Product> Products => _productRepository.TCMSDb.Products;
-
-    public override void Insert(Product product)
+    public ProductView GetModel()
     {
-      if(!Products.Contains(product))
-        _productRepository.Insert(product);
-    }
-
-    public override void Update(Product product)
-    {
-      if (Products.Contains(product))
-        _productRepository.Update(product);
-    }
-
-    public override void Delete(Product product)
-    {
-      if (Products.Contains(product))
-        _productRepository.Update(product);
+      var model = new ProductView();
+      try
+      {
+        model.Title = "Product View";
+        model.Items = _productRepository.TCMSDb.Products;
+        model.ProductCodes = _productRepository.TCMSDb.ProductCodes.ToList();
+        model.ProductGroups = _productRepository.TCMSDb.ProductGroups.ToList();
+        model.ProductStatus = _productRepository.TCMSDb.Status.ToList();
+        return model;
+      }
+      catch(Exception ex)
+      {
+        return model;
+      }
     }
 
     private MasterRepository<Product> _productRepository;

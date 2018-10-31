@@ -1,6 +1,8 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Service;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
+using System;
 using System.Linq;
 
 namespace Seaknots.TCMS.Service
@@ -12,24 +14,26 @@ namespace Seaknots.TCMS.Service
       _customerRepository = repository;
     }
 
-    public IQueryable<Customer> Customers => _customerRepository.TCMSDb.Customers;
-
-    public override void Insert(Customer customer)
+    public CustomerView GetModel()
     {
-      if(!Customers.Contains(customer))
-        _customerRepository.Insert(customer);
-    }
-
-    public override void Update(Customer customer)
-    {
-      if (Customers.Contains(customer))
-        _customerRepository.Update(customer);
-    }
-
-    public override void Delete(Customer customer)
-    {
-      if (Customers.Contains(customer))
-        _customerRepository.Update(customer);
+      var model = new CustomerView();
+      try
+      {
+        model.Title = "Customer View";
+        model.Items = _customerRepository.TCMSDb.Customers;
+        model.Locations = _customerRepository.TCMSDb.Locations.ToList();
+        model.Status = _customerRepository.TCMSDb.Status.ToList();
+        model.TankAgencies = _customerRepository.TCMSDb.TankAgencies.ToList();
+        model.Credits = _customerRepository.TCMSDb.Credits.ToList();
+        model.Credentials = _customerRepository.TCMSDb.Credentials.ToList();
+        model.Countries = _customerRepository.TCMSDb.Countries.ToList();
+        model.CustomerTypes = _customerRepository.TCMSDb.CustomerTypes.ToList();
+        return model;
+      }
+      catch(Exception ex)
+      {
+        return model;
+      }
     }
 
     private MasterRepository<Customer> _customerRepository;

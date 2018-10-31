@@ -2,6 +2,8 @@
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Repository;
 using System.Linq;
+using Seaknots.TCMS.Entities.ViewModels;
+using System;
 
 namespace Seaknots.TCMS.Service
 {
@@ -10,31 +12,23 @@ namespace Seaknots.TCMS.Service
     public LocationService(MasterRepository<Location> repository) : base(repository)
     {
       _locationRepository = repository;
-      foreach(var loc in Locations)
+    }
+
+    public LocationView GetModel()
+    {
+      var model = new LocationView();
+      model.Title = "Location View";
+      try
       {
-        loc.Countries = _locationRepository.TCMSDb.Countries.ToList();
-        loc.Regions = _locationRepository.TCMSDb.Regions.Where(x => x.Text == loc.Country.Text).ToList();
+        model.Countries = _locationRepository.TCMSDb.Countries.ToList();
+        model.Regions = _locationRepository.TCMSDb.Regions.ToList();
+        model.Items = _locationRepository.TCMSDb.Locations.ToList();
+        return model;
       }
-    }
-
-    public IQueryable<Location> Locations => _locationRepository.TCMSDb.Locations;
-
-    public override void Insert(Location location)
-    {
-      if(!Locations.Contains(location))
-        _locationRepository.Insert(location);
-    }
-
-    public override void Update(Location location)
-    {
-      if (Locations.Contains(location))
-        _locationRepository.Update(location);
-    }
-
-    public override void Delete(Location location)
-    {
-      if (Locations.Contains(location))
-        _locationRepository.Update(location);
+      catch (Exception ex)
+      {
+        return model;
+      }
     }
 
     private MasterRepository<Location> _locationRepository;

@@ -29,7 +29,12 @@ namespace Seaknots.TCMS.DataAccess
     public DbSet<User> Users { get; set; }
     public DbSet<Currency> Currencies { get; set; }
     public DbSet<CompanyType> CompanyTypes { get; set; }
+    public DbSet<CustomerType> CustomerTypes { get; set; }
+    public DbSet<Code> ProductCodes { get; set; }
     public DbSet<Region> Regions { get; set; }
+    public DbSet<Status> Status { get; set; }
+    public DbSet<Credit> Credits { get; set; }
+    public DbSet<Credentials> Credentials { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
