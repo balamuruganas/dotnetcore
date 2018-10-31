@@ -1,11 +1,11 @@
 ﻿using Seaknots.TCMS.Core.Abstractions.Service;
 using Seaknots.TCMS.Entities;
-using System.Linq;
+using Seaknots.TCMS.Entities.ViewModels;
 
 namespace Seaknots.TCMS.Service
 {
-  public interface IUserService : IService<User>
+  public interface IVendorService : IService<Vendor>
   {
-    IQueryable<User> Users { get; }
+    VendorView GetModel();
   }
 }
