@@ -1,19 +1,18 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/tankoperators")]
   public class TankOperatorController : ControllerBase
   {
     private readonly ITankOperatorService _toService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public TankOperatorController(ITankOperatorService toService, IUnitOfWork unitOfWork)
@@ -23,7 +22,7 @@
     }
 
     [HttpGet]
-    public IQueryable<TankOperator> Get() => _toService.TankOperators;
+    public IQueryable<TankOperator> Get() => _toService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +32,6 @@
         return BadRequest(ModelState);
 
       var tos = await _toService.FindAsync(id);
-
       if (tos == null)
         return NotFound();
 
@@ -51,7 +49,6 @@
         return BadRequest();
 
       _toService.Update(to);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +57,7 @@
       {
         if (!await _toService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 
@@ -74,7 +72,6 @@
 
       _toService.Insert(to);
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(to);
     }
 
@@ -86,12 +83,10 @@
         return BadRequest(ModelState);
 
       var result = await _toService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }

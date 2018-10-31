@@ -1,19 +1,18 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/customers")]
   public class CustomerController : ControllerBase
   {
     private readonly ICustomerService _customerService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public CustomerController(ICustomerService customerService, IUnitOfWork unitOfWork)
@@ -23,7 +22,7 @@
     }
 
     [HttpGet]
-    public IQueryable<Customer> Get() => _customerService.Customers;
+    public IQueryable<Customer> Get() => _customerService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +32,6 @@
         return BadRequest(ModelState);
 
       var customer = await _customerService.FindAsync(id);
-
       if (customer == null)
         return NotFound();
 
@@ -51,7 +49,6 @@
         return BadRequest();
 
       _customerService.Update(customer);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +57,7 @@
       {
         if (!await _customerService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 
@@ -74,7 +72,6 @@
 
       _customerService.Insert(customer);
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(customer);
     }
 
@@ -86,12 +83,10 @@
         return BadRequest(ModelState);
 
       var result = await _customerService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }

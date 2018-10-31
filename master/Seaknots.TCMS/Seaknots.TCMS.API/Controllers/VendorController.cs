@@ -1,14 +1,15 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/vendors")]
   public class VendorController : ControllerBase
   {
@@ -23,7 +24,7 @@
     }
 
     [HttpGet]
-    public IQueryable<Vendor> Get() => _vendorService.Vendors;
+    public IQueryable<Vendor> Get() => _vendorService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +34,6 @@
         return BadRequest(ModelState);
 
       var vendor = await _vendorService.FindAsync(id);
-
       if (vendor == null)
         return NotFound();
 
@@ -51,7 +51,6 @@
         return BadRequest();
 
       _vendorService.Update(vendor);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +59,7 @@
       {
         if (!await _vendorService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 
@@ -86,12 +86,10 @@
         return BadRequest(ModelState);
 
       var result = await _vendorService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }

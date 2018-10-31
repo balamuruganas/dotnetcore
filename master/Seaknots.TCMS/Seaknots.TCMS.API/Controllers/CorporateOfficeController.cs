@@ -1,19 +1,18 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/corporateoffices")]
   public class CorporateOfficeController : ControllerBase
   {
     private readonly ICorporateOfficeService _coService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public CorporateOfficeController(ICorporateOfficeService coService, IUnitOfWork unitOfWork)
@@ -23,7 +22,7 @@
     }
 
     [HttpGet]
-    public IQueryable<CorporateOffice> Get() => _coService.CorporateOffices;
+    public IQueryable<CorporateOffice> Get() => _coService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +32,6 @@
         return BadRequest(ModelState);
 
       var cos = await _coService.FindAsync(id);
-
       if (cos == null)
         return NotFound();
 
@@ -51,7 +49,6 @@
         return BadRequest();
 
       _coService.Update(co);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +57,7 @@
       {
         if (!await _coService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 
@@ -74,7 +72,6 @@
 
       _coService.Insert(co);
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(co);
     }
 
@@ -86,12 +83,10 @@
         return BadRequest(ModelState);
 
       var result = await _coService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }

@@ -1,19 +1,18 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/products")]
   public class ProductsController : ControllerBase
   {
     private readonly IProductService _productService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public ProductsController(IProductService productService, IUnitOfWork unitOfWork)
@@ -23,7 +22,7 @@
     }
 
     [HttpGet]
-    public IQueryable<Product> Get() => _productService.Products;
+    public IQueryable<Product> Get() => _productService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +32,6 @@
         return BadRequest(ModelState);
 
       var product = await _productService.FindAsync(id);
-
       if (product == null)
         return NotFound();
 
@@ -51,7 +49,6 @@
         return BadRequest();
 
       _productService.Update(product);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +57,7 @@
       {
         if (!await _productService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 
@@ -74,7 +72,6 @@
 
       _productService.Insert(product);
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(product);
     }
 
@@ -86,12 +83,10 @@
         return BadRequest(ModelState);
 
       var result = await _productService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }

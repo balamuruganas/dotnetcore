@@ -3,8 +3,6 @@ using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Seaknots.TCMS.Service

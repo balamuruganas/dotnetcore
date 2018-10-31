@@ -1,19 +1,18 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/users")]
   public class UserController : ControllerBase
   {
     private readonly IUserService _userService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public UserController(IUserService userService, IUnitOfWork unitOfWork)
@@ -22,8 +21,7 @@
       _unitOfWork = unitOfWork;
     }
 
-    [HttpGet]
-    public IQueryable<User> Get() => _userService.Users;
+    public IQueryable<User> Get() => _userService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +31,6 @@
         return BadRequest(ModelState);
 
       var user = await _userService.FindAsync(id);
-
       if (user == null)
         return NotFound();
 
@@ -51,7 +48,6 @@
         return BadRequest();
 
       _userService.Update(user);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +56,7 @@
       {
         if (!await _userService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 

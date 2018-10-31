@@ -1,19 +1,18 @@
-﻿namespace Seaknots.TCMS.API.Controllers
-{
-  using Microsoft.AspNetCore.Mvc;
-  using Microsoft.EntityFrameworkCore;
-  using Seaknots.TCMS.Core.Abstractions.EF;
-  using Seaknots.TCMS.Entities;
-  using Seaknots.TCMS.Service;
-  using System.Linq;
-  using System.Net;
-  using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Abstractions.EF;
+using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Service;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 
+namespace Seaknots.TCMS.API.Controllers
+{
   [Route("api/taxes")]
   public class TaxController : ControllerBase
   {
     private readonly ITaxService _taxService;
-
     private readonly IUnitOfWork _unitOfWork;
 
     public TaxController(ITaxService taxService, IUnitOfWork unitOfWork)
@@ -23,7 +22,7 @@
     }
 
     [HttpGet]
-    public IQueryable<Tax> Get() => _taxService.Taxes;
+    public IQueryable<Tax> Get() => _taxService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -33,7 +32,6 @@
         return BadRequest(ModelState);
 
       var tax = await _taxService.FindAsync(id);
-
       if (tax == null)
         return NotFound();
 
@@ -51,7 +49,6 @@
         return BadRequest();
 
       _taxService.Update(tax);
-
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -60,6 +57,7 @@
       {
         if (!await _taxService.ExistsAsync(id))
           return NotFound();
+
         throw;
       }
 
@@ -74,7 +72,6 @@
 
       _taxService.Insert(tax);
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(tax);
     }
 
@@ -86,12 +83,10 @@
         return BadRequest(ModelState);
 
       var result = await _taxService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }

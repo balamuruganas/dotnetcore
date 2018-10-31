@@ -7,13 +7,9 @@ namespace Seaknots.TCMS.DataAccess
 {
   public class TCMSContext : DbContext
   {
-    public TCMSContext()
-    {
-    }
+    public TCMSContext() {}
 
-    public TCMSContext(DbContextOptions options) : base(options)
-    {
-    }
+    public TCMSContext(DbContextOptions options) : base(options) {}
 
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductGroup> ProductGroups { get; set; }
