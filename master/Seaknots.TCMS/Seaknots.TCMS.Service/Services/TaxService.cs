@@ -1,4 +1,4 @@
-﻿using Seaknots.TCMS.Core.Concrete.Service;
+﻿using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
@@ -6,28 +6,28 @@ using System;
 
 namespace Seaknots.TCMS.Service
 {
-  public class TaxService : Service<Tax>, ITaxService
+  public class TaxService : EntityService<Tax>, ITaxService
   {
-    public TaxService(MasterRepository<Tax> repository) : base(repository)
+    public TaxService(IMasterRepository<Tax> repository) : base(repository)
     {
       _taxRepository = repository;
     }
 
     public TaxView GetModel()
     {
-      var model = new TaxView();
+      var model = new TaxView() { Title = "Tax View" };
       try
       {
-        model.Title = "Tax View";
         model.Items = _taxRepository.TCMSDb.Taxes;
         return model;
       }
       catch(Exception ex)
       {
+        _logger.Log(ex.Message, "In TaxService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
     }
 
-    private MasterRepository<Tax> _taxRepository;
+    private IMasterRepository<Tax> _taxRepository;
   }
 }

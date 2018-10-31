@@ -1,4 +1,4 @@
-﻿using Seaknots.TCMS.Core.Concrete.Service;
+﻿using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
@@ -7,19 +7,18 @@ using System.Linq;
 
 namespace Seaknots.TCMS.Service
 {
-  public class UserService : Service<User>, IUserService
+  public class UserService : EntityService<User>, IUserService
   {
-    public UserService(MasterRepository<User> repository) : base(repository)
+    public UserService(IMasterRepository<User> repository) : base(repository)
     {
       _userRepository = repository;
     }
 
     public UserView GetModel()
     {
-      var model = new UserView();
+      var model = new UserView() { Title = "User View" };
       try
       {
-        model.Title = "User View";
         model.Items = _userRepository.TCMSDb.Users;
         model.Roles = _userRepository.TCMSDb.Roles.ToList();
         model.Companies = _userRepository.TCMSDb.Companies.ToList();
@@ -27,10 +26,11 @@ namespace Seaknots.TCMS.Service
       }
       catch(Exception ex)
       {
+        _logger.Log(ex.Message, "In UserService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
     }
 
-    private MasterRepository<User> _userRepository;
+    private IMasterRepository<User> _userRepository;
   }
 }

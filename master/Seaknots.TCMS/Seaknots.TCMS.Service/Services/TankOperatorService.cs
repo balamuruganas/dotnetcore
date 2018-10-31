@@ -1,4 +1,5 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Service;
+using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
@@ -7,19 +8,18 @@ using System.Linq;
 
 namespace Seaknots.TCMS.Service
 {
-  public class TankOperatorService : Service<TankOperator>, ITankOperatorService
+  public class TankOperatorService : EntityService<TankOperator>, ITankOperatorService
   {
-    public TankOperatorService(MasterRepository<TankOperator> repository) : base(repository)
+    public TankOperatorService(IMasterRepository<TankOperator> repository) : base(repository)
     {
       _tankOperatorRepository = repository;
     }
 
     public TankOperatorView GetModel()
     {
-      var model = new TankOperatorView();
+      var model = new TankOperatorView() { Title = "Tank Operator View" };
       try
       {
-        model.Title = "Tank Operator View";
         model.Items = _tankOperatorRepository.TCMSDb.TankOperators;
         model.OperatorTypes = _tankOperatorRepository.TCMSDb.TanksOperatorTypes.ToList();
         model.CompanyTypes = _tankOperatorRepository.TCMSDb.CompanyTypes.ToList();
@@ -31,10 +31,11 @@ namespace Seaknots.TCMS.Service
       }
       catch(Exception ex)
       {
+        _logger.Log(ex.Message, "In TankOperatorService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
     }
 
-    private MasterRepository<TankOperator> _tankOperatorRepository;
+    private IMasterRepository<TankOperator> _tankOperatorRepository;
   }
 }

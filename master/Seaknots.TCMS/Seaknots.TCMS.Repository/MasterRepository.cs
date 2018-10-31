@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Seaknots.TCMS.Core.Concrete.Trackable;
+﻿using Seaknots.TCMS.Core.Concrete.Trackable;
 using Seaknots.TCMS.DataAccess;
 using TrackableEntities.Common.Core;
 

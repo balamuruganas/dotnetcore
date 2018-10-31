@@ -1,23 +1,22 @@
-﻿using Seaknots.TCMS.Core.Concrete.Service;
-using Seaknots.TCMS.Entities;
+﻿using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Repository;
 using System.Linq;
 using Seaknots.TCMS.Entities.ViewModels;
 using System;
+using Seaknots.TCMS.Core.Logging;
 
 namespace Seaknots.TCMS.Service
 {
-  public class LocationService : Service<Location>, ILocationService
+  public class LocationService : EntityService<Location>, ILocationService
   {
-    public LocationService(MasterRepository<Location> repository) : base(repository)
+    public LocationService(IMasterRepository<Location> repository) : base(repository)
     {
       _locationRepository = repository;
     }
 
     public LocationView GetModel()
     {
-      var model = new LocationView();
-      model.Title = "Location View";
+      var model = new LocationView { Title = "Location View" };
       try
       {
         model.Countries = _locationRepository.TCMSDb.Countries.ToList();
@@ -27,10 +26,11 @@ namespace Seaknots.TCMS.Service
       }
       catch (Exception ex)
       {
+        _logger.Log(ex.Message, "In VenderService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
     }
 
-    private MasterRepository<Location> _locationRepository;
+    private IMasterRepository<Location> _locationRepository;
   }
 }

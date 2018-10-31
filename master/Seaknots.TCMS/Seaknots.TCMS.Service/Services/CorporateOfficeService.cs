@@ -1,4 +1,4 @@
-﻿using Seaknots.TCMS.Core.Concrete.Service;
+﻿using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
@@ -7,19 +7,18 @@ using System.Linq;
 
 namespace Seaknots.TCMS.Service
 {
-  public class CorporateOfficeService : Service<CorporateOffice>, ICorporateOfficeService
+  public class CorporateOfficeService : EntityService<CorporateOffice>, ICorporateOfficeService
   {
-    public CorporateOfficeService(MasterRepository<CorporateOffice> repository) : base(repository)
+    public CorporateOfficeService(IMasterRepository<CorporateOffice> repository) : base(repository)
     {
       _corporateOfficeRepository = repository;
     }
 
     public CorporateOfficeView GetModel()
     {
-      var model = new CorporateOfficeView();
+      var model = new CorporateOfficeView() { Title = "Corporate Office View" };
       try
       {
-        model.Title = "Corporate Office View";
         model.Items = _corporateOfficeRepository.TCMSDb.CorporateOffices;
         model.Locations = _corporateOfficeRepository.TCMSDb.Locations.ToList();
         model.CompanyTypes = _corporateOfficeRepository.TCMSDb.CompanyTypes.ToList();
@@ -29,10 +28,11 @@ namespace Seaknots.TCMS.Service
       }
       catch(Exception ex)
       {
+        _logger.Log(ex.Message, "In VenderService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
     }
 
-    private MasterRepository<CorporateOffice> _corporateOfficeRepository;
+    private IMasterRepository<CorporateOffice> _corporateOfficeRepository;
   }
 }
