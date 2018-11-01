@@ -1,6 +1,7 @@
 ﻿using Seaknots.TCMS.Core.Concrete.Trackable;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
@@ -10,10 +11,9 @@ namespace Seaknots.TCMS.Entities
     public string Value { get; set; } = string.Empty;
   }
 
-  public class BankInfo
-  {
-    [Key]
-    public int ID { get; set; }
+  public class BankInfo {
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int BankID { get; set; }
   }
 
   public class Port : ListItem {}
@@ -36,10 +36,8 @@ namespace Seaknots.TCMS.Entities
 
   public class CleaningMethod : ListItem {}
 
-  public class Credit
+  public class Credit : Entity
   {
-    [Key]
-    public int ID { get; set; }
     public int Days { get; set; } = 0;
     public double Amount { get; set; } = 0;
   }
@@ -62,8 +60,10 @@ namespace Seaknots.TCMS.Entities
     public DateTime AlertDate { get; set; }
   }
 
-  public class Logo : Entity
+  public class Logo
   {
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int LogoID { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Url { get; set; } = string.Empty;
   }

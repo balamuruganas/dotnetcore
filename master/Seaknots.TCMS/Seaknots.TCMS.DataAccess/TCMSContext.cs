@@ -37,10 +37,25 @@ namespace Seaknots.TCMS.DataAccess
     public DbSet<CompanyType> CompanyTypes { get; set; }
     public DbSet<Port> Ports { get; set; }
     public DbSet<Depot> Depots { get; set; }
+    public DbSet<BankInfo> Banks { get; set; }
+    public DbSet<Logo> Logos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.RemovePluralizingTableNameConvention();
+      modelBuilder.Entity<User>().HasKey(c => new { c.ID, c.Email });
+      modelBuilder.Entity<Role>().HasKey(c => new { c.ID, c.Name });
+      modelBuilder.Entity<CorporateOffice>(entity =>
+      {
+        entity.HasKey(c => new { c.ID, c.GlobalID });
+        entity.HasOne(x => x.BankInfo)
+                .WithMany()
+                .HasForeignKey(x => x.BankID);
+        entity.HasOne(x => x.Logo)
+                .WithMany()
+                .HasForeignKey(x => x.LogoID);
+      });
+      //modelBuilder.Entity<CorporateOffice>().HasOne(c => c.GlobalID).WithOne().HasForeignKey<BankInfo>(x => x.GlobalID);
     }
   }
 

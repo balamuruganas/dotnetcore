@@ -42,6 +42,12 @@ namespace Seaknots.TCMS.API
       if (!_ctx.Regions.Any())
         AddRegions();
 
+      if (!_ctx.Banks.Any())
+        AddBanks();
+
+      if (!_ctx.Logos.Any())
+        AddLogos();
+
       if (!_ctx.CorporateOffices.Any())
         AddCorporateOffices();
 
@@ -62,7 +68,6 @@ namespace Seaknots.TCMS.API
           new Country() { Name="FR", Value="France" },
           new Country() { Name="ES", Value="Spain" }
         });
-      _ctx.SaveChanges();
     }
 
     private void AddProductGroups()
@@ -137,9 +142,9 @@ namespace Seaknots.TCMS.API
     {
       _ctx.CorporateOffices.AddRange(new List<CorporateOffice>()
       {
-        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai" },
-        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi" },
-        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork" }
+        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai", BankID=1, LogoID=1 },
+        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi", BankID=1, LogoID=1 },
+        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork", BankID=1, LogoID=1 }
       });
       _ctx.SaveChanges();
     }
@@ -160,6 +165,24 @@ namespace Seaknots.TCMS.API
       {
         new User() { Name="Amresh Kumar", Email="kumar.anirudha@gmail.com", Password="aks", RoleID=0, CompanyID=0, IsActive=true, LocationID=0 },
         new User() { Name="Kumar Anirudha", Email="kumar.anirudha@hotmail.com", Password="aks", RoleID=1, CompanyID=1, IsActive=true,LocationID=1 }
+      });
+      _ctx.SaveChanges();
+    }
+
+    private void AddBanks()
+    {
+      _ctx.Banks.AddRange(new List<BankInfo>()
+      {
+        new BankInfo()
+      });
+      _ctx.SaveChanges();
+    }
+
+    private void AddLogos()
+    {
+      _ctx.Logos.AddRange(new List<Logo>()
+      {
+        new Logo()
       });
       _ctx.SaveChanges();
     }

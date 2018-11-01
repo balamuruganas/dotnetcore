@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
@@ -34,7 +32,7 @@ namespace Seaknots.TCMS.Entities
     public string Address { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public string Website { get; set; } = string.Empty;
-    public BankInfo AcountDetail { get; set; } = new BankInfo();
+    public BankInfo AcountDetail { get; set; }
     public ICollection<Contact> Contacts { get; set; }
     public ICollection<OperatorProp> Operators { get; set; }
     //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
