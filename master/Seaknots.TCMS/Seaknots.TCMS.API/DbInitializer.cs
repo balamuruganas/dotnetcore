@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.DataAccess;
 using Seaknots.TCMS.Entities;
@@ -49,6 +47,9 @@ namespace Seaknots.TCMS.API
 
       if (!_ctx.Roles.Any())
         AddRoles();
+
+      if (!_ctx.Users.Any())
+        AddUsers();
     }
 
     private void AddCountries()
@@ -149,6 +150,16 @@ namespace Seaknots.TCMS.API
       {
         new Role() { Name = "Admin" },
         new Role() { Name = "User" }
+      });
+      _ctx.SaveChanges();
+    }
+
+    private void AddUsers()
+    {
+      _ctx.Users.AddRange(new List<User>()
+      {
+        new User() { Name="Amresh Kumar", Email="kumar.anirudha@gmail.com", Password="aks", RoleID=0, CompanyID=0, IsActive = true },
+        new User() { Name="Kumar Anirudha", Email="kumar.anirudha@hotmail.com", Password="aks", RoleID=1, CompanyID=1, IsActive = true }
       });
       _ctx.SaveChanges();
     }

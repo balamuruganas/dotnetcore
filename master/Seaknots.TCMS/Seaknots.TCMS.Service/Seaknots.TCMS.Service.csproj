@@ -130,6 +130,8 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -155,6 +157,7 @@
     <Compile Include="Interfaces\ITankOperatorService.cs" />
     <Compile Include="Interfaces\ITankAgencyService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
+    <Compile Include="RoleProvider\SiteRole.cs" />
     <Compile Include="Services\CorporateOfficeService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\UserService.cs" />

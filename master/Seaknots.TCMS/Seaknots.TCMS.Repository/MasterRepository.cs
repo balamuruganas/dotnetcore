@@ -11,6 +11,6 @@ namespace Seaknots.TCMS.Repository
       TCMSDb = ctx;
     }
 
-    public TCMSContext TCMSDb { get; }
+    public TCMSContext TCMSDb { get; set; }
   }
 }

@@ -72,7 +72,6 @@ namespace Seaknots.TCMS.API.Controllers
 
       _userService.Insert(user);
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(user);
     }
 
@@ -84,12 +83,10 @@ namespace Seaknots.TCMS.API.Controllers
         return BadRequest(ModelState);
 
       var result = await _userService.DeleteAsync(id);
-
       if (!result)
         return NotFound();
 
       await _unitOfWork.SaveChangesAsync();
-
       return StatusCode((int)HttpStatusCode.NoContent);
     }
   }
