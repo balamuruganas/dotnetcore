@@ -41,8 +41,6 @@ namespace Seaknots.TCMS.DataAccess
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.RemovePluralizingTableNameConvention();
-      modelBuilder.Entity<Product>()
-                  .HasKey(x => x.ID);
     }
   }
 

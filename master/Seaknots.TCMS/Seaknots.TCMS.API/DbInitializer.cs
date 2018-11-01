@@ -18,8 +18,8 @@ namespace Seaknots.TCMS.API
     public void Initialize()
     {
       // Run Migrations
-      if (!_ctx.Database.EnsureCreated())
-        _ctx.Database.Migrate();
+      _ctx.Database.EnsureCreated();
+      _ctx.Database.Migrate();
 
       if (!_ctx.Countries.Any())
         AddCountries();

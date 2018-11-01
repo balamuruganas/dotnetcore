@@ -1,10 +1,8 @@
 ﻿using Seaknots.TCMS.Core.Logging;
-using Seaknots.TCMS.DataAccess;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
 using System;
-using System.Collections;
 using System.Linq;
 
 namespace Seaknots.TCMS.Service
