@@ -158,8 +158,8 @@ namespace Seaknots.TCMS.API
     {
       _ctx.Users.AddRange(new List<User>()
       {
-        new User() { Name="Amresh Kumar", Email="kumar.anirudha@gmail.com", Password="aks", RoleID=0, CompanyID=0, IsActive = true },
-        new User() { Name="Kumar Anirudha", Email="kumar.anirudha@hotmail.com", Password="aks", RoleID=1, CompanyID=1, IsActive = true }
+        new User() { Name="Amresh Kumar", Email="kumar.anirudha@gmail.com", Password="aks", RoleID=0, CompanyID=0, IsActive=true, LocationID=0 },
+        new User() { Name="Kumar Anirudha", Email="kumar.anirudha@hotmail.com", Password="aks", RoleID=1, CompanyID=1, IsActive=true,LocationID=1 }
       });
       _ctx.SaveChanges();
     }

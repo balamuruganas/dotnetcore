@@ -27,6 +27,7 @@ namespace Seaknots.TCMS.Service
         model.Items = _userRepository.TCMSDb.Users;
         model.Roles = _userRepository.TCMSDb.Roles.ToList();
         model.Companies = _userRepository.TCMSDb.Companies.ToList();
+        model.Locations = _userRepository.TCMSDb.Locations.ToList();
         return model;
       }
       catch(Exception ex)
@@ -36,13 +37,47 @@ namespace Seaknots.TCMS.Service
       }
     }
 
+    public User Login(User user)
+    {
+      try
+      {
+        return _userRepository.TCMSDb.Users.Where(x => x.Email == user.Email && x.Password == user.Password)?.FirstOrDefault();
+      }
+      catch (Exception ex)
+      {
+        _logger.Log(ex.Message, "In UserService:Login", Logger.LogLevel.Fatal);
+        return null;
+      }
+    }
+
+    public User Register(User user)
+    {
+      try
+      {
+        if(_userRepository.TCMSDb.Users.Where(x => x.Email == user.Email)?.FirstOrDefault() != null)
+        {
+          _logger.Log(string.Format("User {0} already exists, registration failed.", user.Email), 
+            "In UserService:Register", Logger.LogLevel.Error);
+          return null;
+        }
+
+        _userRepository.Insert(user);
+        return _userRepository.TCMSDb.Users.Where(x => x.Email == user.Email && x.Password == user.Password)?.FirstOrDefault();
+      }
+      catch (Exception ex)
+      {
+        _logger.Log(ex.Message, "In UserService:Register", Logger.LogLevel.Fatal);
+        return null;
+      }
+    }
+
     public string GetRole(string userName)
     {
       try
       {
-        User user = _userRepository.TCMSDb.Users.Where(x => x.Email == userName).FirstOrDefault();
+        User user = _userRepository.TCMSDb.Users.Where(x => x.Email == userName)?.FirstOrDefault();
         if (user != null)
-          return _userRepository.TCMSDb.Roles.Where(x => x.ID == user.RoleID).FirstOrDefault().Name;
+          return _userRepository.TCMSDb.Roles.Where(x => x.ID == user.RoleID)?.FirstOrDefault().Name;
       }
       catch(Exception ex)
       {
