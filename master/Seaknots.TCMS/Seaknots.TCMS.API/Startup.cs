@@ -98,20 +98,19 @@
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
-        app.UseCors(builder =>
-        {
-          builder.AllowAnyOrigin();
-          builder.AllowAnyHeader();
-          builder.AllowAnyMethod();
-          builder.AllowCredentials();
-          builder.Build();
-        });
       }
       else
       {
         app.UseHsts();
       }
-
+      app.UseCors(builder =>
+      {
+        builder.AllowAnyOrigin();
+        builder.AllowAnyHeader();
+        builder.AllowAnyMethod();
+        builder.AllowCredentials();
+        builder.Build();
+      });
       app.UseHttpsRedirection();
       app.UseMvc();
       app.UseSwagger();

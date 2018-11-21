@@ -51,14 +51,15 @@ namespace Seaknots.TCMS.API
       if (!_ctx.CorporateOffices.Any())
         AddCorporateOffices();
 
+
+      if (!_ctx.Contacts.Any())
+        AddContacts();
+
       if (!_ctx.Roles.Any())
         AddRoles();
 
       if (!_ctx.Users.Any())
         AddUsers();
-
-      if (!_ctx.Contacts.Any())
-        AddContacts();
     }
 
     private void AddCountries()
