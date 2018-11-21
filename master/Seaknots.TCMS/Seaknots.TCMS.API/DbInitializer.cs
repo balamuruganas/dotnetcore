@@ -56,6 +56,9 @@ namespace Seaknots.TCMS.API
 
       if (!_ctx.Users.Any())
         AddUsers();
+
+      if (!_ctx.Contacts.Any())
+        AddContacts();
     }
 
     private void AddCountries()
@@ -142,9 +145,9 @@ namespace Seaknots.TCMS.API
     {
       _ctx.CorporateOffices.AddRange(new List<CorporateOffice>()
       {
-        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai", BankID=1, LogoID=1 },
-        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi", BankID=1, LogoID=1 },
-        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork", BankID=1, LogoID=1 }
+        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai", BankID=0, LogoID=1 },
+        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi", BankID=0, LogoID=1 },
+        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork", BankID=0, LogoID=1 }
       });
       _ctx.SaveChanges();
     }
@@ -173,7 +176,8 @@ namespace Seaknots.TCMS.API
     {
       _ctx.Banks.AddRange(new List<BankInfo>()
       {
-        new BankInfo()
+        new BankInfo() { AccountNumber="01234", BankName="National Bank 1", HolderName="Amresh Kumar", BranchIFSC="NB001"},
+        new BankInfo() { AccountNumber="02345", BankName="National Bank 2", HolderName="Amresh Kumar", BranchIFSC="NB002"}
       });
       _ctx.SaveChanges();
     }
@@ -183,6 +187,16 @@ namespace Seaknots.TCMS.API
       _ctx.Logos.AddRange(new List<Logo>()
       {
         new Logo()
+      });
+      _ctx.SaveChanges();
+    }
+
+    private void AddContacts()
+    {
+      _ctx.Contacts.AddRange(new List<Contact>()
+      {
+        new Contact() { DepartmentID = 0, Designation = "TD1", Email = "t1@tcms.com", HP = 12, Name = "Test Contact 2" },
+        new Contact() { DepartmentID = 1, Designation = "TD2", Email = "t2@tcms.com", HP = 12, Name = "Test Contact 1" }
       });
       _ctx.SaveChanges();
     }

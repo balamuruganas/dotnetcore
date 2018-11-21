@@ -148,8 +148,10 @@
   <ItemGroup>
     <Compile Include="EntityService.cs" />
     <Compile Include="IEntityService.cs" />
+    <Compile Include="Interfaces\IContactService.cs" />
     <Compile Include="Interfaces\ICorporateOfficeService.cs" />
     <Compile Include="Interfaces\ILocationService.cs" />
+    <Compile Include="Interfaces\IBankInfoService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Interfaces\ITaxService.cs" />
     <Compile Include="Interfaces\IVendorService.cs" />
@@ -158,8 +160,10 @@
     <Compile Include="Interfaces\ITankAgencyService.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="RoleProvider\SiteRole.cs" />
+    <Compile Include="Services\ContactService.cs" />
     <Compile Include="Services\CorporateOfficeService.cs" />
     <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\BankInfoService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\TaxService.cs" />
     <Compile Include="Services\VendorService.cs" />

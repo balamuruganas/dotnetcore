@@ -11,11 +11,6 @@ namespace Seaknots.TCMS.Entities
     public string Value { get; set; } = string.Empty;
   }
 
-  public class BankInfo {
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int BankID { get; set; }
-  }
-
   public class Port : ListItem {}
 
   public class Depot : ListItem {}

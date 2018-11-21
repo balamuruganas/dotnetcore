@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\BankInfo.cs" />
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Models\CorporateOffice.cs" />
     <Compile Include="Models\Contact.cs" />
@@ -61,9 +62,11 @@
     <Compile Include="Models\CommonTypes.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\ContactView.cs" />
     <Compile Include="ViewModels\BaseView.cs" />
     <Compile Include="ViewModels\CorporateOfficeView.cs" />
     <Compile Include="ViewModels\CustomerView.cs" />
+    <Compile Include="ViewModels\BankInfoView.cs" />
     <Compile Include="ViewModels\LocationView.cs" />
     <Compile Include="ViewModels\ProductView.cs" />
     <Compile Include="ViewModels\TankAgencyView.cs" />

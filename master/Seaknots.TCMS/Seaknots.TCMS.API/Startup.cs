@@ -17,7 +17,7 @@
   using Seaknots.TCMS.Repository;
   using Seaknots.TCMS.Service;
   using Swashbuckle.AspNetCore.Swagger;
-  using Contact = Swashbuckle.AspNetCore.Swagger.Contact;
+  using Contact = TCMS.Entities.Contact;
 
   public class Startup
   {
@@ -46,6 +46,8 @@
       services.AddScoped<ITrackableRepository<Tax>, TrackableRepository<Tax>>();
       services.AddScoped<ITrackableRepository<User>, TrackableRepository<User>>();
       services.AddScoped<ITrackableRepository<Vendor>, TrackableRepository<Vendor>>();
+      services.AddScoped<ITrackableRepository<BankInfo>, TrackableRepository<BankInfo>>();
+      services.AddScoped<ITrackableRepository<Contact>, TrackableRepository<Contact>>();
 
       services.AddScoped<IMasterRepository<CorporateOffice>, MasterRepository<CorporateOffice>>();
       services.AddScoped<IMasterRepository<Customer>, MasterRepository<Customer>>();
@@ -56,6 +58,8 @@
       services.AddScoped<IMasterRepository<Tax>, MasterRepository<Tax>>();
       services.AddScoped<IMasterRepository<User>, MasterRepository<User>>();
       services.AddScoped<IMasterRepository<Vendor>, MasterRepository<Vendor>>();
+      services.AddScoped<IMasterRepository<BankInfo>, MasterRepository<BankInfo>>();
+      services.AddScoped<IMasterRepository<Contact>, MasterRepository<Contact>>();
 
       services.AddScoped<ICorporateOfficeService, CorporateOfficeService>();
       services.AddScoped<ICustomerService, CustomerService>();
@@ -66,6 +70,8 @@
       services.AddScoped<ITaxService, TaxService>();
       services.AddScoped<IUserService, UserService>();
       services.AddScoped<IVendorService, VendorService>();
+      services.AddScoped<IBankInfoService, BankInfoService>();
+      services.AddScoped<IContactService, ContactService>();
 
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                       .AddJsonOptions(opt =>
@@ -82,7 +88,7 @@
           Title = "TCMS API",
           Description = "Seaknots TCMS API",
           TermsOfService = "None",
-          Contact = new Contact() { Name = "Seaknots", Email = "contact@seaknots.com", Url = "www.seaknots.com" }
+          Contact = new Swashbuckle.AspNetCore.Swagger.Contact() { Name = "Seaknots", Email = "contact@seaknots.com", Url = "www.seaknots.com" }
         });
       });
     }

@@ -38,6 +38,7 @@ namespace Seaknots.TCMS.DataAccess
     public DbSet<Port> Ports { get; set; }
     public DbSet<Depot> Depots { get; set; }
     public DbSet<BankInfo> Banks { get; set; }
+    public DbSet<Contact> Contacts { get; set; }
     public DbSet<Logo> Logos { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
