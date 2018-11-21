@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Repository", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Service", "Seaknots.TCMS.Service\Seaknots.TCMS.Service.csproj", "{ADD134E5-0099-40B9-A542-9DB3CF9B5CE3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.API", "Seaknots.TCMS.API\Seaknots.TCMS.API.csproj", "{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seaknots.TCMS.API", "Seaknots.TCMS.API\Seaknots.TCMS.API.csproj", "{F8E30C83-5173-4DBB-8569-BAFA7DCCC8F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seaknots.TCMS.Entities", "Seaknots.TCMS.Entities\Seaknots.TCMS.Entities.csproj", "{3967B556-C352-4537-8826-E4EC602884A8}"
 EndProject
