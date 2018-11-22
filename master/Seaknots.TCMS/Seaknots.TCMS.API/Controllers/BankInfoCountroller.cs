@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/vendors")]
+  [Route("api/bankinfo")]
   public class BankInfoController : ControllerBase
   {
     private readonly IBankInfoService _bankService;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/taxes")]
+  [Route("api/tax")]
   public class TaxController : ControllerBase
   {
     private readonly ITaxService _taxService;

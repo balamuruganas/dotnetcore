@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/vendors")]
+  [Route("api/vendor")]
   public class VendorController : ControllerBase
   {
     private readonly IVendorService _vendorService;

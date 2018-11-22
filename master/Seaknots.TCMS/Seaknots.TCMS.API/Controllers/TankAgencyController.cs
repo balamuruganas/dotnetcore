@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/tankagencies")]
+  [Route("api/tankagency")]
   public class TankAgencyController : ControllerBase
   {
     private readonly ITankAgencyService _taService;

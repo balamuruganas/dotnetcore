@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/products")]
+  [Route("api/product")]
   public class ProductsController : ControllerBase
   {
     private readonly IProductService _productService;

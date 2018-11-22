@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/vendors")]
+  [Route("api/contact")]
   public class ContactController : ControllerBase
   {
     private readonly IContactService _contactService;

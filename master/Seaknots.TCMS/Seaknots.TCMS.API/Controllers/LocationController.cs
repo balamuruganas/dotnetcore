@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/locations")]
+  [Route("api/location")]
   public class LocationController : ControllerBase
   {
     private readonly ILocationService _locationService;
