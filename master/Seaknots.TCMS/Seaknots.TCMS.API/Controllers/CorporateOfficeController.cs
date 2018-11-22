@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Service;
 using System.Linq;
 using System.Net;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/corporateoffices")]
+  [Route("api/corporateoffice")]
   public class CorporateOfficeController : ControllerBase
   {
     private readonly ICorporateOfficeService _coService;
@@ -23,6 +24,10 @@ namespace Seaknots.TCMS.API.Controllers
 
     [HttpGet]
     public IQueryable<CorporateOffice> Get() => _coService.GetModel().Items.AsQueryable();
+
+    [HttpGet]
+    [Route("/ui")]
+    public CorporateOfficeView UI() => _coService.GetModel();
 
     [HttpGet]
     [Route("{id:int}")]

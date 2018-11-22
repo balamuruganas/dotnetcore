@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
@@ -10,24 +11,24 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/taxes")]
-  public class TaxController : ControllerBase
+  [Route("api/vendors")]
+  public class ContactController : ControllerBase
   {
-    private readonly ITaxService _taxService;
+    private readonly IContactService _contactService;
     private readonly IUnitOfWork _unitOfWork;
 
-    public TaxController(ITaxService taxService, IUnitOfWork unitOfWork)
+    public ContactController(IContactService contactService, IUnitOfWork unitOfWork)
     {
-      _taxService = taxService;
+      _contactService = contactService;
       _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
-    public IQueryable<Tax> Get() => _taxService.GetModel().Items.AsQueryable();
+    public IQueryable<Contact> Get() => _contactService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("/ui")]
-    public TaxView UI() => _taxService.GetModel();
+    public ContactView UI() => _contactService.GetModel();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -36,31 +37,31 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var tax = await _taxService.FindAsync(id);
-      if (tax == null)
+      var contact = await _contactService.FindAsync(id);
+      if (contact == null)
         return NotFound();
 
-      return Ok(tax);
+      return Ok(contact);
     }
 
     [HttpPut]
     [Route("{id:int}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Tax tax)
+    public async Task<IActionResult> Put(int id, [FromBody] Contact contact)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != tax.TaxID)
+      if (id != contact.ContactID)
         return BadRequest();
 
-      _taxService.Update(tax);
+      _contactService.Update(contact);
       try
       {
         await _unitOfWork.SaveChangesAsync();
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!await _taxService.ExistsAsync(id))
+        if (!await _contactService.ExistsAsync(id))
           return NotFound();
 
         throw;
@@ -70,14 +71,15 @@ namespace Seaknots.TCMS.API.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Tax tax)
+    public async Task<IActionResult> Post([FromBody] Contact contact)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _taxService.Insert(tax);
+      _contactService.Insert(contact);
       await _unitOfWork.SaveChangesAsync();
-      return Ok(tax);
+
+      return Ok(contact);
     }
 
     [HttpDelete]
@@ -87,7 +89,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _taxService.DeleteAsync(id);
+      var result = await _contactService.DeleteAsync(id);
       if (!result)
         return NotFound();
 

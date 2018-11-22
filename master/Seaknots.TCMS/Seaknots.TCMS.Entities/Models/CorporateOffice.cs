@@ -26,7 +26,7 @@ namespace Seaknots.TCMS.Entities
     public string Address { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public ICollection<Contact> Contacts { get; set; }
-    public BankInfo BankInfo { get; set; }
+    public ICollection<BankInfo> BankInfo { get; set; }
     //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
     public Logo Logo { get; set; }
   }

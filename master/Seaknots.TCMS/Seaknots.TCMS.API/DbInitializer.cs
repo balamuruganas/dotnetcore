@@ -48,12 +48,11 @@ namespace Seaknots.TCMS.API
       if (!_ctx.Logos.Any())
         AddLogos();
 
-      if (!_ctx.CorporateOffices.Any())
-        AddCorporateOffices();
-
-
       if (!_ctx.Contacts.Any())
         AddContacts();
+
+      if (!_ctx.CorporateOffices.Any())
+        AddCorporateOffices();
 
       if (!_ctx.Roles.Any())
         AddRoles();
@@ -144,11 +143,13 @@ namespace Seaknots.TCMS.API
 
     private void AddCorporateOffices()
     {
+      var banks = _ctx.Banks;
+      var contacts = _ctx.Contacts;
       _ctx.CorporateOffices.AddRange(new List<CorporateOffice>()
       {
-        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai" },
-        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi" },
-        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork" }
+        new CorporateOffice() { GlobalID="CO1", ShortName="Corporate Office 1", CompanyName="Corporate Office One", CompanyTypeID=0, CurrencyID=0, CountryID=0, LocationID=0, Email="co1@tcms.com", Address="1 Avenue, Chennai", BankInfo=banks.ToList(), Contacts=contacts.ToList() },
+        new CorporateOffice() { GlobalID="CO2", ShortName="Corporate Office 2", CompanyName="Corporate Office Two", CompanyTypeID=1, CurrencyID=0, CountryID=0, LocationID =1, Email ="co2@tcms.com", Address="2 Avenue, Delhi", BankInfo = banks.ToList(), Contacts=contacts.ToList() },
+        new CorporateOffice() { GlobalID="CO3", ShortName="Corporate Office 3", CompanyName="Corporate Office Three", CompanyTypeID=2, CurrencyID=1, CountryID=1, LocationID =2, Email ="co3@tcms.com", Address="3 Avenue, Newyork", BankInfo=banks.ToList(), Contacts=contacts.ToList() }
       });
       _ctx.SaveChanges();
     }

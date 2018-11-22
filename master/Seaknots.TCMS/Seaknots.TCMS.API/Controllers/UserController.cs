@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Service;
 using System.Linq;
 using System.Net;
@@ -23,6 +24,10 @@ namespace Seaknots.TCMS.API.Controllers
 
     [HttpGet]
     public IQueryable<User> Get() => _userService.GetModel().Items.AsQueryable();
+
+    [HttpGet]
+    [Route("/ui")]
+    public UserView UI() => _userService.GetModel();
 
     [HttpGet]
     [Route("{id:int}")]

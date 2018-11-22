@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
@@ -10,24 +11,24 @@ using System.Threading.Tasks;
 
 namespace Seaknots.TCMS.API.Controllers
 {
-  [Route("api/taxes")]
-  public class TaxController : ControllerBase
+  [Route("api/vendors")]
+  public class BankInfoController : ControllerBase
   {
-    private readonly ITaxService _taxService;
+    private readonly IBankInfoService _bankService;
     private readonly IUnitOfWork _unitOfWork;
 
-    public TaxController(ITaxService taxService, IUnitOfWork unitOfWork)
+    public BankInfoController(IBankInfoService bankService, IUnitOfWork unitOfWork)
     {
-      _taxService = taxService;
+      _bankService = bankService;
       _unitOfWork = unitOfWork;
     }
 
     [HttpGet]
-    public IQueryable<Tax> Get() => _taxService.GetModel().Items.AsQueryable();
+    public IQueryable<BankInfo> Get() => _bankService.GetModel().Items.AsQueryable();
 
     [HttpGet]
     [Route("/ui")]
-    public TaxView UI() => _taxService.GetModel();
+    public BankInfoView UI() => _bankService.GetModel();
 
     [HttpGet]
     [Route("{id:int}")]
@@ -36,31 +37,31 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var tax = await _taxService.FindAsync(id);
-      if (tax == null)
+      var bankinfo = await _bankService.FindAsync(id);
+      if (bankinfo == null)
         return NotFound();
 
-      return Ok(tax);
+      return Ok(bankinfo);
     }
 
     [HttpPut]
     [Route("{id:int}")]
-    public async Task<IActionResult> Put(int id, [FromBody] Tax tax)
+    public async Task<IActionResult> Put(int id, [FromBody] BankInfo bankinfo)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != tax.TaxID)
+      if (id != bankinfo.BankID)
         return BadRequest();
 
-      _taxService.Update(tax);
+      _bankService.Update(bankinfo);
       try
       {
         await _unitOfWork.SaveChangesAsync();
       }
       catch (DbUpdateConcurrencyException)
       {
-        if (!await _taxService.ExistsAsync(id))
+        if (!await _bankService.ExistsAsync(id))
           return NotFound();
 
         throw;
@@ -70,14 +71,15 @@ namespace Seaknots.TCMS.API.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Tax tax)
+    public async Task<IActionResult> Post([FromBody] BankInfo bankinfo)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _taxService.Insert(tax);
+      _bankService.Insert(bankinfo);
       await _unitOfWork.SaveChangesAsync();
-      return Ok(tax);
+
+      return Ok(bankinfo);
     }
 
     [HttpDelete]
@@ -87,7 +89,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _taxService.DeleteAsync(id);
+      var result = await _bankService.DeleteAsync(id);
       if (!result)
         return NotFound();
 

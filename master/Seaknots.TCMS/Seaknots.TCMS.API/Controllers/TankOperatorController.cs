@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Service;
 using System.Linq;
 using System.Net;
@@ -37,6 +38,10 @@ namespace Seaknots.TCMS.API.Controllers
 
       return Ok(tos);
     }
+
+    [HttpGet]
+    [Route("/ui")]
+    public TankOperatorView UI() => _toService.GetModel();
 
     [HttpPut]
     [Route("{id:int}")]

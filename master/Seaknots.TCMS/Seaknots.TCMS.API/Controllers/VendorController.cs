@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Service;
 using System.Linq;
 using System.Net;
@@ -24,6 +25,10 @@ namespace Seaknots.TCMS.API.Controllers
 
     [HttpGet]
     public IQueryable<Vendor> Get() => _vendorService.GetModel().Items.AsQueryable();
+
+    [HttpGet]
+    [Route("/ui")]
+    public VendorView UI() => _vendorService.GetModel();
 
     [HttpGet]
     [Route("{id:int}")]

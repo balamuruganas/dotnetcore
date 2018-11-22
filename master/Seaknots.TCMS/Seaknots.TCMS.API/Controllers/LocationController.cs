@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
+using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Service;
 using System.Linq;
 using System.Net;
@@ -23,6 +24,10 @@ namespace Seaknots.TCMS.API.Controllers
 
     [HttpGet]
     public IQueryable<Location> Get() => _locationService.GetModel().Items.AsQueryable();
+
+    [HttpGet]
+    [Route("/ui")]
+    public LocationView UI() => _locationService.GetModel();
 
     [HttpGet]
     [Route("{id:int}")]
