@@ -26,7 +26,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<CorporateOffice> Get() => _coService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public CorporateOfficeView UI() => _coService.GetModel();
 
     [HttpGet]

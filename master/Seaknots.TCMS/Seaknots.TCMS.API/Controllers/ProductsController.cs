@@ -26,7 +26,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<Product> Get() => _productService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public ProductView UI() => _productService.GetModel();
 
     [HttpGet]

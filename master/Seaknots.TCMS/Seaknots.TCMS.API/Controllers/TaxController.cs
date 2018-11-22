@@ -26,7 +26,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<Tax> Get() => _taxService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public TaxView UI() => _taxService.GetModel();
 
     [HttpGet]

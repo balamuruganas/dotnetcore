@@ -27,7 +27,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<Vendor> Get() => _vendorService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public VendorView UI() => _vendorService.GetModel();
 
     [HttpGet]

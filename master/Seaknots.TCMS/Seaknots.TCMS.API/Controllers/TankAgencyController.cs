@@ -26,7 +26,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<TankAgency> Get() => _taService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public TankAgencyView UI() => _taService.GetModel();
 
     [HttpGet]

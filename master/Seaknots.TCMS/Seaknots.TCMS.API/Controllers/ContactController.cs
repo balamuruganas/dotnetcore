@@ -27,7 +27,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<Contact> Get() => _contactService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public ContactView UI() => _contactService.GetModel();
 
     [HttpGet]

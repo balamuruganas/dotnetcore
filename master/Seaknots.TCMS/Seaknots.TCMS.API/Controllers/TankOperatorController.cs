@@ -40,7 +40,7 @@ namespace Seaknots.TCMS.API.Controllers
     }
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public TankOperatorView UI() => _toService.GetModel();
 
     [HttpPut]

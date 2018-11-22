@@ -27,7 +27,7 @@ namespace Seaknots.TCMS.API.Controllers
     public IQueryable<BankInfo> Get() => _bankService.GetModel().Items.AsQueryable();
 
     [HttpGet]
-    [Route("/ui")]
+    [Route("ui")]
     public BankInfoView UI() => _bankService.GetModel();
 
     [HttpGet]
