@@ -45,7 +45,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != location.ID)
+      if (id != location.LocID)
         return BadRequest();
 
       _locationService.Update(location);

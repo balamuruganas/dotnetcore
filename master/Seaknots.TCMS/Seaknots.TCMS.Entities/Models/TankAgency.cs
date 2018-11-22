@@ -2,12 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
   public class OperatorProp : Entity
   {
-    public int OperatorID { get; set; } = -1;
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int OperatorID { get; set; }
     public DateTime ValidFrom { get; set; } = DateTime.Now;
     public DateTime ValidTill { get; set; } = DateTime.Now;
     public double ExportCom { get; set; } = 0;
@@ -23,6 +26,8 @@ namespace Seaknots.TCMS.Entities
       Contacts = new Collection<Contact>();
     }
 
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int TaID { get; set; }
     public string ShortName { get; set; } = string.Empty;
     public string CompanyName { get; set; } = string.Empty;
     public int CompanyTypeID { get; set; } = -1;

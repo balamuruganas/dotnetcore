@@ -45,7 +45,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != ta.ID)
+      if (id != ta.TaID)
         return BadRequest();
 
       _taService.Update(ta);

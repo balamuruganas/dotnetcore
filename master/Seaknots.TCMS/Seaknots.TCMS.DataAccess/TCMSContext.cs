@@ -44,18 +44,28 @@ namespace Seaknots.TCMS.DataAccess
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       modelBuilder.RemovePluralizingTableNameConvention();
-      modelBuilder.Entity<User>().HasKey(c => new { c.ID, c.Email });
-      modelBuilder.Entity<Role>().HasKey(c => new { c.ID, c.Name });
-      modelBuilder.Entity<CorporateOffice>(entity =>
-      {
-        entity.HasKey(c => new { c.ID, c.GlobalID });
-        entity.HasOne(x => x.BankInfo)
-                .WithMany()
-                .HasForeignKey(x => x.BankID);
-        entity.HasOne(x => x.Logo)
-                .WithMany()
-                .HasForeignKey(x => x.LogoID);
-      });
+      modelBuilder.Entity<User>().HasKey(c => new { c.UserID, c.Email });
+      modelBuilder.Entity<Role>().HasKey(c => new { c.RoleID, c.Name });
+      modelBuilder.Entity<CorporateOffice>().HasKey(c => new { c.CoID, c.GlobalID });
+      //{
+      //  entity.haskey(c => new { c.coid, c.globalid });
+      //  entity.hasone(x => x.bankinfo)
+      //          .withmany()
+      //          .hasforeignkey(x => x.bankid);
+      //  entity.hasone(x => x.logo)
+      //          .withmany()
+      //          .hasforeignkey(x => x.logoid);
+      //});
+      //modelbuilder.entity<corporateoffice>(entity =>
+      //{
+      //  entity.haskey(c => new { c.coid, c.globalid });
+      //  entity.hasone(x => x.bankinfo)
+      //          .withmany()
+      //          .hasforeignkey(x => x.bankid);
+      //  entity.hasone(x => x.logo)
+      //          .withmany()
+      //          .hasforeignkey(x => x.logoid);
+      //});
       //modelBuilder.Entity<CorporateOffice>().HasOne(c => c.GlobalID).WithOne().HasForeignKey<BankInfo>(x => x.GlobalID);
     }
   }

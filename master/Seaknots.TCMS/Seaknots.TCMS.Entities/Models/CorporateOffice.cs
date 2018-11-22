@@ -13,6 +13,8 @@ namespace Seaknots.TCMS.Entities
       Contacts = new Collection<Contact>();
     }
 
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int CoID { get; set; }
     [Key]
     public string GlobalID { get; set; } = string.Empty;
     public string ShortName { get; set; } = string.Empty;
@@ -24,10 +26,8 @@ namespace Seaknots.TCMS.Entities
     public string Address { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public ICollection<Contact> Contacts { get; set; }
-    public int BankID { get; set; }
     public BankInfo BankInfo { get; set; }
     //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
-    public int LogoID { get; set; }
     public Logo Logo { get; set; }
   }
 }

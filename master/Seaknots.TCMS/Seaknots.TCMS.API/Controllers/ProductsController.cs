@@ -45,7 +45,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != product.ID)
+      if (id != product.ProdID)
         return BadRequest();
 
       _productService.Update(product);

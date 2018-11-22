@@ -8,7 +8,9 @@ namespace Seaknots.TCMS.Entities
 {
   public class Tax : Entity
   {
-    public string Code { get; set; } = string.Empty;
+	  [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int TaxID { get; set; }
+    public string Code { get; set; }
     public string Name { get; set; } = string.Empty;
     public double Percentage { get; set; } = 0;
   }

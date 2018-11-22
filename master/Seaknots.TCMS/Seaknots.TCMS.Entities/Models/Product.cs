@@ -14,6 +14,8 @@ namespace Seaknots.TCMS.Entities
       CleaningMethods = new Collection<CleaningMethod>();
     }
 
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int ProdID { get; set; }
     public int GroupID { get; set; } = -1;
     public int CodeID { get; set; } = -1;
     public string ShippingName { get; set; } = string.Empty;

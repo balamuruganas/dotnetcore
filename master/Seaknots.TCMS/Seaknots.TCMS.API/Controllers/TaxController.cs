@@ -45,7 +45,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      if (id != tax.ID)
+      if (id != tax.TaxID)
         return BadRequest();
 
       _taxService.Update(tax);

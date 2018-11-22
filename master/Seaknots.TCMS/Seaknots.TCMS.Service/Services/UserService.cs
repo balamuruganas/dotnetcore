@@ -75,7 +75,7 @@ namespace Seaknots.TCMS.Service
       {
         User user = _userRepository.TCMSDb.Users.Where(x => x.Email == userName)?.FirstOrDefault();
         if (user != null)
-          return _userRepository.TCMSDb.Roles.Where(x => x.ID == user.RoleID)?.FirstOrDefault().Name;
+          return _userRepository.TCMSDb.Roles.Where(x => x.RoleID == user.RoleID)?.FirstOrDefault().Name;
       }
       catch(Exception ex)
       {
