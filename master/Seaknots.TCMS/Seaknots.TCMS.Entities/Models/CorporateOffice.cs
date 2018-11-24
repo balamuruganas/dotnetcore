@@ -6,28 +6,32 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Seaknots.TCMS.Entities
 {
-  public class CorporateOffice : Entity
-  {
-    public CorporateOffice()
+    public class CorporateOffice : Entity
     {
-      Contacts = new Collection<Contact>();
-    }
+        public CorporateOffice()
+        {
+            this.Contacts = new HashSet<Contact>();
+            this.BankInfo = new HashSet<BankInfo>();
+        }
 
-    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int CoID { get; set; }
-    [Key]
-    public string GlobalID { get; set; } = string.Empty;
-    public string ShortName { get; set; } = string.Empty;
-    public string CompanyName { get; set; } = string.Empty;
-    public int CompanyTypeID { get; set; } = -1;
-    public int CurrencyID { get; set; } = -1;
-    public int CountryID { get; set; } = -1;
-    public int LocationID { get; set; } = -1;
-    public string Address { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public ICollection<Contact> Contacts { get; set; }
-    public ICollection<BankInfo> BankInfo { get; set; }
-    //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
-    public Logo Logo { get; set; }
-  }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CoID { get; set; }
+
+        [Key]
+        public string GlobalID { get; set; } = string.Empty;
+
+        public string ShortName { get; set; } = string.Empty;
+        public string CompanyName { get; set; } = string.Empty;
+        public int CompanyTypeID { get; set; } = -1;
+        public int CurrencyID { get; set; } = -1;
+        public int CountryID { get; set; } = -1;
+        public int LocationID { get; set; } = -1;
+        public string Address { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public ICollection<Contact> Contacts { get; set; }
+        public ICollection<BankInfo> BankInfo { get; set; }
+
+        //public ICollection<Dictionary<string, dynamic>> CustomFields { get; set; }
+        public Logo Logo { get; set; }
+    }
 }
