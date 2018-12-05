@@ -1,0 +1,98 @@
+Edit Corporate Office
+
+{
+    "coID":4,
+    "globalID": "CO4",
+    "shortName": "Corporate Office 1",
+    "companyName": "Corporate Office One",
+    "companyTypeID": 0,
+    "currencyID": 0,
+    "countryID": 0,
+    "locationID": 0,
+    "address": "1 Avenue, Chennai",
+    "email": "co1@tcms.com",
+    "contacts": [
+      {
+        "name": "Test Contact 2",
+        "designation": "TD1",
+        "departmentID": 0,
+        "email": "t1@tcms.com",
+        "hp": 12
+
+      },
+      {
+        "name": "Test Contact 1",
+        "designation": "TD2",
+        "departmentID": 1,
+        "email": "t2@tcms.com",
+        "hp": 12
+      }
+    ],
+    "bankInfo": [
+      {
+        "accountNumber": "0001",
+        "bankName": "HDFC",
+        "holderName": "Balamurugan",
+        "branchIFSC": "HDFC0001"
+
+      },
+      {
+        "accountNumber": "0001",
+        "bankName": "HDFC",
+        "holderName": "Balamurugan",
+        "branchIFSC": "HDFC0001"
+      }
+    ],
+    "logo": null
+ }
+ 
+ 
+ 
+ Add Corporate Office:
+ 
+ 
+ {
+    "coID":4,
+    "globalID": "CO4",
+    "shortName": "Corporate Office 1",
+    "companyName": "Corporate Office One",
+    "companyTypeID": 0,
+    "currencyID": 0,
+    "countryID": 0,
+    "locationID": 0,
+    "address": "1 Avenue, Chennai",
+    "email": "co1@tcms.com",
+    "contacts": [
+      {
+        "name": "Test Contact 2",
+        "designation": "TD1",
+        "departmentID": 0,
+        "email": "t1@tcms.com",
+        "hp": 12
+
+      },
+      {
+        "name": "Test Contact 1",
+        "designation": "TD2",
+        "departmentID": 1,
+        "email": "t2@tcms.com",
+        "hp": 12
+      }
+    ],
+    "bankInfo": [
+      {
+        "accountNumber": "0001",
+        "bankName": "HDFC",
+        "holderName": "Balamurugan",
+        "branchIFSC": "HDFC0001"
+
+      },
+      {
+        "accountNumber": "0001",
+        "bankName": "HDFC",
+        "holderName": "Balamurugan",
+        "branchIFSC": "HDFC0001"
+      }
+    ],
+    "logo": null
+ }
