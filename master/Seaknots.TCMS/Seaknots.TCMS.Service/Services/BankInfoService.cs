@@ -25,11 +25,17 @@ namespace Seaknots.TCMS.Service
         model.Items = _bankRepository.TCMSDb.Banks;
         return model;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         _logger.Log(ex.Message, "In BankInfoService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(BankInfo bankInfo)
+    {
+      _bankRepository.TCMSDb.Banks.Add(bankInfo);
+      _bankRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<BankInfo> _bankRepository;

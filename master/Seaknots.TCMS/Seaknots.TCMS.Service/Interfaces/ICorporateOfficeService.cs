@@ -7,5 +7,7 @@ namespace Seaknots.TCMS.Service
   public interface ICorporateOfficeService : IService<CorporateOffice>
   {
     CorporateOfficeView GetModel();
+
+    void Add(CorporateOffice coObj);
   }
 }

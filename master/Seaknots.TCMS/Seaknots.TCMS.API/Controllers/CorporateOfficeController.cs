@@ -75,8 +75,10 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _coService.Insert(co);
+      _coService.Add(co);
+
       await _unitOfWork.SaveChangesAsync();
+
       return Ok(co);
     }
 
