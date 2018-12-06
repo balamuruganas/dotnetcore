@@ -42,7 +42,7 @@ namespace Seaknots.TCMS.Service
 
     public void Update(CorporateOffice coObj)
     {
-      _corporateOfficeRepository.TCMSDb.CorporateOffices.Update(coObj);
+      _corporateOfficeRepository.TCMSDb.CorporateOffices.Add(coObj);
       _corporateOfficeRepository.TCMSDb.SaveChanges();
     }
 

@@ -25,11 +25,17 @@ namespace Seaknots.TCMS.Service
         model.Items = _contactRepository.TCMSDb.Contacts;
         return model;
       }
-      catch(Exception ex)
+      catch (Exception ex)
       {
         _logger.Log(ex.Message, "In ContactService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(Contact contact)
+    {
+      _contactRepository.TCMSDb.Contacts.Add(contact);
+      _contactRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<Contact> _contactRepository;
