@@ -53,7 +53,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != bankinfo.BankID)
         return BadRequest();
 
-      _bankService.Update(bankinfo);
+      _bankService.Edit(bankinfo);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -89,9 +89,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _bankService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
+      _bankService.Remove(id);
 
       await _unitOfWork.SaveChangesAsync();
       return StatusCode((int)HttpStatusCode.NoContent);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Seaknots.TCMS.Core.Abstractions.EF;
 using Seaknots.TCMS.Entities;
@@ -53,7 +54,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != co.CoID)
         return BadRequest();
 
-      _coService.Update(co);
+      _coService.Edit(co);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -70,7 +71,7 @@ namespace Seaknots.TCMS.API.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CorporateOffice co)
+    public async Task<IActionResult> Post(CorporateOffice co)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
@@ -89,9 +90,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _coService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
+      _coService.Remove(id);
 
       await _unitOfWork.SaveChangesAsync();
       return StatusCode((int)HttpStatusCode.NoContent);

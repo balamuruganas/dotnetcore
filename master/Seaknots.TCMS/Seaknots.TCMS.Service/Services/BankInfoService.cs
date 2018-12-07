@@ -38,6 +38,18 @@ namespace Seaknots.TCMS.Service
       _bankRepository.TCMSDb.SaveChanges();
     }
 
+    public void Edit(BankInfo bankInfo)
+    {
+      _bankRepository.TCMSDb.Banks.Update(bankInfo);
+      _bankRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _bankRepository.TCMSDb.Banks.Remove(_bankRepository.TCMSDb.Banks.Single(x => x.BankID == id));
+      _bankRepository.TCMSDb.SaveChanges();
+    }
+
     private IMasterRepository<BankInfo> _bankRepository;
   }
 }

@@ -9,5 +9,9 @@ namespace Seaknots.TCMS.Service
     CorporateOfficeView GetModel();
 
     void Add(CorporateOffice coObj);
+
+    void Edit(CorporateOffice coObj);
+
+    void Remove(int Id);
   }
 }

@@ -40,9 +40,16 @@ namespace Seaknots.TCMS.Service
       _corporateOfficeRepository.TCMSDb.SaveChanges();
     }
 
-    public void Update(CorporateOffice coObj)
+    public void Edit(CorporateOffice coObj)
     {
-      _corporateOfficeRepository.TCMSDb.CorporateOffices.Add(coObj);
+      _corporateOfficeRepository.TCMSDb.CorporateOffices.Update(coObj);
+      _corporateOfficeRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int coID)
+    {
+      _corporateOfficeRepository.TCMSDb.CorporateOffices.Remove(
+        _corporateOfficeRepository.TCMSDb.CorporateOffices.Include("BankInfo").Include("Contacts").Single(x => x.CoID == coID));
       _corporateOfficeRepository.TCMSDb.SaveChanges();
     }
 

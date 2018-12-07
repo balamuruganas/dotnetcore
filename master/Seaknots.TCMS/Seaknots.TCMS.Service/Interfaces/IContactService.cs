@@ -9,5 +9,9 @@ namespace Seaknots.TCMS.Service
     ContactView GetModel();
 
     void Add(Contact contact);
+
+    void Edit(Contact contact);
+
+    void Remove(int Id);
   }
 }

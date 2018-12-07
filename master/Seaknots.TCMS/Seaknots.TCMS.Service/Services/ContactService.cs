@@ -38,6 +38,18 @@ namespace Seaknots.TCMS.Service
       _contactRepository.TCMSDb.SaveChanges();
     }
 
+    public void Edit(Contact contact)
+    {
+      _contactRepository.TCMSDb.Contacts.Update(contact);
+      _contactRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int Id)
+    {
+      _contactRepository.TCMSDb.Contacts.Remove(_contactRepository.TCMSDb.Contacts.Single(x => x.ContactID == Id));
+      _contactRepository.TCMSDb.SaveChanges();
+    }
+
     private IMasterRepository<Contact> _contactRepository;
   }
 }

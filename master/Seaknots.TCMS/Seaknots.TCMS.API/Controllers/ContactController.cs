@@ -53,7 +53,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != contact.ContactID)
         return BadRequest();
 
-      _contactService.Update(contact);
+      _contactService.Edit(contact);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -76,6 +76,7 @@ namespace Seaknots.TCMS.API.Controllers
         return BadRequest(ModelState);
 
       _contactService.Add(contact);
+
       await _unitOfWork.SaveChangesAsync();
 
       return Ok(contact);
@@ -88,9 +89,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _contactService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
+      _contactService.Remove(id);
 
       await _unitOfWork.SaveChangesAsync();
       return StatusCode((int)HttpStatusCode.NoContent);

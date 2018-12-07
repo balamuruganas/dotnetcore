@@ -9,5 +9,9 @@ namespace Seaknots.TCMS.Service
     BankInfoView GetModel();
 
     void Add(BankInfo bankInfo);
+
+    void Edit(BankInfo bankInfo);
+
+    void Remove(int id);
   }
 }
