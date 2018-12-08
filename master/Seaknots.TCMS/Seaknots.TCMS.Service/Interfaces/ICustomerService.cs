@@ -8,5 +8,8 @@ namespace Seaknots.TCMS.Service
   public interface ICustomerService : IService<Customer>
   {
     CustomerView GetModel();
+    void Add(Customer cObj);
+    void Edit(Customer cObj);
+    void Remove(int Id);
   }
 }

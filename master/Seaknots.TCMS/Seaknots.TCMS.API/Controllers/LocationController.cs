@@ -53,7 +53,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != location.LocID)
         return BadRequest();
 
-      _locationService.Update(location);
+      _locationService.Edit(location);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace Seaknots.TCMS.API.Controllers
         throw;
       }
 
-      return NoContent();
+      return Ok(location);
     }
 
     [HttpPost]
@@ -75,7 +75,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _locationService.Insert(location);
+      _locationService.Add(location);
       await _unitOfWork.SaveChangesAsync();
       return Ok(location);
     }
@@ -87,12 +87,9 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _locationService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
-
+      _locationService.Remove(id);
       await _unitOfWork.SaveChangesAsync();
-      return StatusCode((int)HttpStatusCode.NoContent);
+      return Ok(id);
     }
   }
 }

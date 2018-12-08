@@ -22,8 +22,8 @@ namespace Seaknots.TCMS.Entities
   {
     public TankAgency()
     {
-      Operators = new Collection<OperatorProp>();
-      Contacts = new Collection<Contact>();
+      Operators = new HashSet<OperatorProp>();
+      Contacts = new HashSet<Contact>();
     }
 
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

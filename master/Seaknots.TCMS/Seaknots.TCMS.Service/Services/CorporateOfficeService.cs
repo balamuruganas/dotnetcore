@@ -49,8 +49,8 @@ namespace Seaknots.TCMS.Service
     public void Remove(int coID)
     {
       _corporateOfficeRepository.TCMSDb.CorporateOffices.Remove(
-        _corporateOfficeRepository.TCMSDb.CorporateOffices.Include("BankInfo").Include("Contacts").Single(x => x.CoID == coID));
-      _corporateOfficeRepository.TCMSDb.SaveChanges();
+        _corporateOfficeRepository.TCMSDb.CorporateOffices.Include("Contacts").Include("BankInfo").Single(x => x.CoID == coID));
+      _corporateOfficeRepository.TCMSDb.SaveChanges();              
     }
 
     private IMasterRepository<CorporateOffice> _corporateOfficeRepository;

@@ -7,5 +7,8 @@ namespace Seaknots.TCMS.Service
   public interface ITankOperatorService : IService<TankOperator>
   {
     TankOperatorView GetModel();
+    void Add(TankOperator to);
+    void Edit(TankOperator tp);
+    void Remove(int Id);
   }
 }

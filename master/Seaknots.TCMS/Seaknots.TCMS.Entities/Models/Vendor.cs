@@ -10,7 +10,7 @@ namespace Seaknots.TCMS.Entities
   {
     public Vendor()
     {
-      Contacts = new Collection<Contact>();
+      Contacts = new HashSet<Contact>();
     }
 
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

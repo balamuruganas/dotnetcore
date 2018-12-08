@@ -8,5 +8,8 @@ namespace Seaknots.TCMS.Service
   public interface ILocationService : IService<Location>
   {
     LocationView GetModel();
+    void Add(Location loc);
+    void Edit(Location loc);
+    void Remove(int Id);
   }
 }

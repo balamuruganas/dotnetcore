@@ -77,9 +77,7 @@ namespace Seaknots.TCMS.API.Controllers
         return BadRequest(ModelState);
 
       _coService.Add(co);
-
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(co);
     }
 
@@ -91,9 +89,7 @@ namespace Seaknots.TCMS.API.Controllers
         return BadRequest(ModelState);
 
       _coService.Remove(id);
-
       await _unitOfWork.SaveChangesAsync();
-
       return Ok(id);
     }
   }

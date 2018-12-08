@@ -7,5 +7,8 @@ namespace Seaknots.TCMS.Service
   public interface ITaxService : IService<Tax>
   {
     TaxView GetModel();
+    void Add(Tax tax);
+    void Edit(Tax tax);
+    void Remove(int Id);
   }
 }

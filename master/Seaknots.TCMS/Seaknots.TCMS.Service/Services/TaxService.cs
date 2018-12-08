@@ -3,6 +3,7 @@ using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
 using System;
+using System.Linq;
 
 namespace Seaknots.TCMS.Service
 {
@@ -26,6 +27,24 @@ namespace Seaknots.TCMS.Service
         _logger.Log(ex.Message, "In TaxService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(Tax tax)
+    {
+      _taxRepository.TCMSDb.Taxes.Add(tax);
+      _taxRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(Tax tax)
+    {
+      _taxRepository.TCMSDb.Taxes.Update(tax);
+      _taxRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _taxRepository.TCMSDb.Taxes.Remove(_taxRepository.TCMSDb.Taxes.Single(x => x.TaxID == id));
+      _taxRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<Tax> _taxRepository;

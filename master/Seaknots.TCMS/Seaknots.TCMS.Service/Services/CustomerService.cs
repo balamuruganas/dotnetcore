@@ -1,4 +1,5 @@
-﻿using Seaknots.TCMS.Core.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
@@ -34,6 +35,26 @@ namespace Seaknots.TCMS.Service
         _logger.Log(ex.Message, "In VenderService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(Customer cObj)
+    {
+      _customerRepository.TCMSDb.Customers.Add(cObj);
+      _customerRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(Customer cObj)
+    {
+      _customerRepository.TCMSDb.Customers.Update(cObj);
+      _customerRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int cID)
+    {
+      Customer obj = _customerRepository.TCMSDb.Customers.Where(x => x.CustomerID == cID).FirstOrDefault();
+      _customerRepository.TCMSDb.Customers.Remove(
+        _customerRepository.TCMSDb.Customers.Include("Followups").Include("Affliates").Single(x => x.CustomerID == cID));
+      _customerRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<Customer> _customerRepository;

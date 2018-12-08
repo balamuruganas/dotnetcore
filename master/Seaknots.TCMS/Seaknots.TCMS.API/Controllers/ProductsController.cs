@@ -53,7 +53,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != product.ProdID)
         return BadRequest();
 
-      _productService.Update(product);
+      _productService.Edit(product);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace Seaknots.TCMS.API.Controllers
         throw;
       }
 
-      return NoContent();
+      return Ok(product);
     }
 
     [HttpPost]
@@ -75,7 +75,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _productService.Insert(product);
+      _productService.Add(product);
       await _unitOfWork.SaveChangesAsync();
       return Ok(product);
     }
@@ -87,12 +87,9 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _productService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
-
+      _productService.Remove(id);
       await _unitOfWork.SaveChangesAsync();
-      return StatusCode((int)HttpStatusCode.NoContent);
+      return Ok(id);
     }
   }
 }

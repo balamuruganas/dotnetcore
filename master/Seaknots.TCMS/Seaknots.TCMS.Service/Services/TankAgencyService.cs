@@ -1,4 +1,5 @@
-﻿using Seaknots.TCMS.Core.Concrete.Service;
+﻿using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Concrete.Service;
 using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
@@ -32,6 +33,25 @@ namespace Seaknots.TCMS.Service
         _logger.Log(ex.Message, "In TankAgencyService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(TankAgency ta)
+    {
+      _tankAgencyRepository.TCMSDb.TankAgencies.Add(ta);
+      _tankAgencyRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(TankAgency ta)
+    {
+      _tankAgencyRepository.TCMSDb.TankAgencies.Update(ta);
+      _tankAgencyRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _tankAgencyRepository.TCMSDb.TankAgencies.Remove(
+        _tankAgencyRepository.TCMSDb.TankAgencies.Include("Operators").Include("Contacts").Single(x => x.TaID == id));
+      _tankAgencyRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<TankAgency> _tankAgencyRepository;

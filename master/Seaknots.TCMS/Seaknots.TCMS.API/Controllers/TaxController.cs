@@ -53,7 +53,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != tax.TaxID)
         return BadRequest();
 
-      _taxService.Update(tax);
+      _taxService.Edit(tax);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace Seaknots.TCMS.API.Controllers
         throw;
       }
 
-      return NoContent();
+      return Ok(tax);
     }
 
     [HttpPost]
@@ -75,7 +75,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _taxService.Insert(tax);
+      _taxService.Add(tax);
       await _unitOfWork.SaveChangesAsync();
       return Ok(tax);
     }
@@ -87,12 +87,9 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _taxService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
-
+      _taxService.Remove(id);
       await _unitOfWork.SaveChangesAsync();
-      return StatusCode((int)HttpStatusCode.NoContent);
+      return Ok(id);
     }
   }
 }

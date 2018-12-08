@@ -10,8 +10,8 @@ namespace Seaknots.TCMS.Entities
   {
     public Product()
     {
-      RestrictedPorts = new Collection<Port>();
-      CleaningMethods = new Collection<CleaningMethod>();
+      RestrictedPorts = new HashSet<Port>();
+      CleaningMethods = new HashSet<CleaningMethod>();
     }
 
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

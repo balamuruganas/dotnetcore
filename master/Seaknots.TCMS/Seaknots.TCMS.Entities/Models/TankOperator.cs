@@ -10,10 +10,10 @@ namespace Seaknots.TCMS.Entities
   {
     public TankOperator()
     {
-      Contacts = new Collection<Contact>();
-      BankInfos = new Collection<BankInfo>();
-      PortsCovered = new Collection<Port>();
-      DepotsCovered = new Collection<Depot>();
+      Contacts = new HashSet<Contact>();
+      BankInfos = new HashSet<BankInfo>();
+      PortsCovered = new HashSet<Port>();
+      DepotsCovered = new HashSet<Depot>();
     }
 
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

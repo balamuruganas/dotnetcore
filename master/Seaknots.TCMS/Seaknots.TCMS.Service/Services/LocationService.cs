@@ -31,6 +31,24 @@ namespace Seaknots.TCMS.Service
       }
     }
 
+    public void Add(Location loc)
+    {
+      _locationRepository.TCMSDb.Locations.Add(loc);
+      _locationRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(Location loc)
+    {
+      _locationRepository.TCMSDb.Locations.Update(loc);
+      _locationRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _locationRepository.TCMSDb.Locations.Remove(_locationRepository.TCMSDb.Locations.Single(x => x.LocID == id));
+      _locationRepository.TCMSDb.SaveChanges();
+    }
+
     private IMasterRepository<Location> _locationRepository;
   }
 }

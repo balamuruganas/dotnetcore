@@ -1,4 +1,5 @@
-﻿using Seaknots.TCMS.Core.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Seaknots.TCMS.Core.Logging;
 using Seaknots.TCMS.Entities;
 using Seaknots.TCMS.Entities.ViewModels;
 using Seaknots.TCMS.Repository;
@@ -30,6 +31,25 @@ namespace Seaknots.TCMS.Service
         _logger.Log(ex.Message, "In ProductService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(Product prd)
+    {
+      _productRepository.TCMSDb.Products.Add(prd);
+      _productRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(Product prd)
+    {
+      _productRepository.TCMSDb.Products.Update(prd);
+      _productRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _productRepository.TCMSDb.Products.Remove(
+        _productRepository.TCMSDb.Products.Include("RestrictedPorts").Include("CleaningMethods").Single(x => x.ProdID == id));
+      _productRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<Product> _productRepository;

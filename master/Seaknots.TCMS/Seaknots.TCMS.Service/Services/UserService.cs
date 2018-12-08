@@ -86,6 +86,24 @@ namespace Seaknots.TCMS.Service
       return string.Empty;
     }
 
+    public void Add(User usr)
+    {
+      _userRepository.TCMSDb.Users.Add(usr);
+      _userRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(User usr)
+    {
+      _userRepository.TCMSDb.Users.Update(usr);
+      _userRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _userRepository.TCMSDb.Users.Remove(_userRepository.TCMSDb.Users.Single(x => x.UserID == id));
+      _userRepository.TCMSDb.SaveChanges();
+    }
+
     private IMasterRepository<User> _userRepository;
   }
 }

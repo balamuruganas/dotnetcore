@@ -4,6 +4,7 @@ using Seaknots.TCMS.Repository;
 using System;
 using System.Linq;
 using Seaknots.TCMS.Core.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace Seaknots.TCMS.Service
 {
@@ -34,6 +35,24 @@ namespace Seaknots.TCMS.Service
         _logger.Log(ex.Message, "In VenderService:GetModel", Logger.LogLevel.Fatal);
         return model;
       }
+    }
+
+    public void Add(Vendor vendor)
+    {
+      _vendorRepository.TCMSDb.Vendors.Add(vendor);
+      _vendorRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Edit(Vendor vendor)
+    {
+      _vendorRepository.TCMSDb.Vendors.Update(vendor);
+      _vendorRepository.TCMSDb.SaveChanges();
+    }
+
+    public void Remove(int id)
+    {
+      _vendorRepository.TCMSDb.Vendors.Remove(_vendorRepository.TCMSDb.Vendors.Include("Contacts").Single(x => x.VendorID == id));
+      _vendorRepository.TCMSDb.SaveChanges();
     }
 
     private IMasterRepository<Vendor> _vendorRepository;

@@ -7,5 +7,8 @@ namespace Seaknots.TCMS.Service
   public interface IVendorService : IService<Vendor>
   {
     VendorView GetModel();
+    void Add(Vendor vendor);
+    void Edit(Vendor vendor);
+    void Remove(int Id);
   }
 }

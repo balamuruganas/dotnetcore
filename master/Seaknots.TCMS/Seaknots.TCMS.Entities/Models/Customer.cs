@@ -10,8 +10,8 @@ namespace Seaknots.TCMS.Entities
   {
     public Customer()
     {
-      Followups = new Collection<Followup>();
-      Affliates = new Collection<Affliates>();
+      Followups = new HashSet<Followup>();
+      Affliates = new HashSet<Affliates>();
     }
 
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]

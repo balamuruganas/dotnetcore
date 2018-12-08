@@ -8,5 +8,8 @@ namespace Seaknots.TCMS.Service
   public interface IProductService : IService<Product>
   {
     ProductView GetModel();
+    void Add(Product prd);
+    void Edit(Product prd);
+    void Remove(int Id);
   }
 }

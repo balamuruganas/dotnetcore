@@ -53,7 +53,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (id != ta.TaID)
         return BadRequest();
 
-      _taService.Update(ta);
+      _taService.Edit(ta);
       try
       {
         await _unitOfWork.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace Seaknots.TCMS.API.Controllers
         throw;
       }
 
-      return NoContent();
+      return Ok(ta);
     }
 
     [HttpPost]
@@ -75,7 +75,7 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      _taService.Insert(ta);
+      _taService.Add(ta);
       await _unitOfWork.SaveChangesAsync();
       return Ok(ta);
     }
@@ -87,12 +87,9 @@ namespace Seaknots.TCMS.API.Controllers
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
 
-      var result = await _taService.DeleteAsync(id);
-      if (!result)
-        return NotFound();
-
+      _taService.Remove(id);
       await _unitOfWork.SaveChangesAsync();
-      return StatusCode((int)HttpStatusCode.NoContent);
+      return Ok(id);
     }
   }
 }
