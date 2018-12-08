@@ -66,7 +66,7 @@ namespace Seaknots.TCMS.API.Controllers
         throw;
       }
 
-      return NoContent();
+      return Ok(bankinfo);
     }
 
     [HttpPost]
@@ -92,7 +92,7 @@ namespace Seaknots.TCMS.API.Controllers
       _bankService.Remove(id);
 
       await _unitOfWork.SaveChangesAsync();
-      return StatusCode((int)HttpStatusCode.NoContent);
+      return Ok(id);
     }
   }
 }

@@ -67,11 +67,11 @@ namespace Seaknots.TCMS.API.Controllers
         throw;
       }
 
-      return NoContent();
+      return Ok(co);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post(CorporateOffice co)
+    public async Task<IActionResult> Post([FromBody] CorporateOffice co)
     {
       if (!ModelState.IsValid)
         return BadRequest(ModelState);
@@ -93,7 +93,8 @@ namespace Seaknots.TCMS.API.Controllers
       _coService.Remove(id);
 
       await _unitOfWork.SaveChangesAsync();
-      return StatusCode((int)HttpStatusCode.NoContent);
+
+      return Ok(id);
     }
   }
 }
